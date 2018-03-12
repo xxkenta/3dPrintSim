@@ -20,7 +20,13 @@ namespace PrinterSimulator
     {
         static void PrintFile(PrinterControl simCtl)
         {
-            System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
+            //System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
+            string path = "file";
+            OpenFileDialog file = new OpenFileDialog();
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                path = file.FileName;
+            }
 
             Stopwatch swTimer = new Stopwatch();
             swTimer.Start();
@@ -45,7 +51,7 @@ namespace PrinterSimulator
             byte[] packetHeader = { cmd, len, lowCheck, highCheck };
             byte[] ack = { 0xA5 };
             byte[] nack = { 0xFF };
-            byte[] packet; //Assign later
+            byte[] packet = {}; //Assign later
 
             int sent = simCtl.WriteSerialToFirmware(packetHeader, 4); //Send 4 byte header
             int recieved = simCtl.ReadSerialFromFirmware(firmHeader, 4);//Read 4 byte response (MAKE SURE TO DECLARE FIRMHEADER IN THE FIRMWARE)
@@ -53,7 +59,7 @@ namespace PrinterSimulator
             if (sent == recieved) //Check the the firmware recieved the correct header
             {
                 simCtl.WriteSerialToFirmware(ack, 1); //Send Ack
-                simCtl.WriteSerialToFirmware(packet, 1); //Send Rest of packet
+                simCtl.WriteSerialToFirmware(packet, len - 4); //Send Rest of packet
 
             }
             else
@@ -111,6 +117,37 @@ namespace PrinterSimulator
                         break;
 
                     case 'T': // Test menu
+                        Console.Clear();
+                        Console.WriteLine("3D Printer Simulation - Test Menu\n");
+                        Console.WriteLine("B - Test build plate movement from top to bottom");
+                        Console.WriteLine("G - Test galvo");
+                        Console.WriteLine("L - Test laser on/off");
+                        Console.WriteLine("T - Test host to firmware connection");
+                        Console.WriteLine("Z - Test build plate movement to specific point");
+
+                        ch = Char.ToUpper(Console.ReadKey().KeyChar);
+                        switch (ch)
+                        {
+                            case 'B': // Test build plate movement from top to bottom
+                                //add functionalty
+                                break;
+
+                            case 'G': // Test galvo
+                                //add functionalty
+                                break;
+
+                            case 'L': // Test laser on/off
+                                //add functionalty
+                                break;
+
+                            case 'T': // Test host to firmware connection
+                                //add functionalty
+                                break;
+
+                            case 'Z': // Test build plate movement to specific point
+                                //add functionalty
+                                break;
+                        }
                         break;
 
                     case 'Q' :  // Quite
@@ -119,9 +156,7 @@ namespace PrinterSimulator
                         fDone = true;
                         break;
                 }
-
             }
-
         }
     }
 }
