@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Threading;
+using System.IO;
+using System.Windows;
+using Microsoft.Win32;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
@@ -13,6 +16,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Hardware;
 using Firmware;
+using System.Windows.Forms;
 
 namespace PrinterSimulator
 {
@@ -20,7 +24,13 @@ namespace PrinterSimulator
     {
         static void PrintFile(PrinterControl simCtl)
         {
-            System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
+            //System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
+            string path = "file";
+            OpenFileDialog file = new OpenFileDialog();
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                path = file.FileName;
+            }
 
             Stopwatch swTimer = new Stopwatch();
             swTimer.Start();
@@ -46,6 +56,7 @@ namespace PrinterSimulator
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool SetForegroundWindow(IntPtr hWnd);
 
+        [STAThread]
         static void Main()
         {
 
@@ -71,7 +82,6 @@ namespace PrinterSimulator
             {
                 Console.Clear();
                 Console.WriteLine("3D Printer Simulation - Control Menu\n");
-                Console.WriteLine("F - File");
                 Console.WriteLine("P - Print");
                 Console.WriteLine("T - Test");
                 Console.WriteLine("Q - Quit");
@@ -79,9 +89,6 @@ namespace PrinterSimulator
                 char ch = Char.ToUpper(Console.ReadKey().KeyChar);
                 switch (ch)
                 {
-
-                    case 'F': // Select file
-                        break;
 
                     case 'P': // Print
                         PrintFile(printer.GetPrinterSim());
@@ -100,18 +107,23 @@ namespace PrinterSimulator
                         switch (ch)
                         {
                             case 'B': // Test build plate movement from top to bottom
+                                //add functionalty
                                 break;
 
                             case 'G': // Test galvo
+                                //add functionalty
                                 break;
 
                             case 'L': // Test laser on/off
+                                //add functionalty
                                 break;
 
                             case 'T': // Test host to firmware connection
+                                //add functionalty
                                 break;
 
                             case 'Z': // Test build plate movement to specific point
+                                //add functionalty
                                 break;
                         }
                         break;

@@ -22,3 +22,15 @@ C:\Users\inari\Desktop\3DSim - Student version\3DPrinterSim\obj\Debug\3DPrinterS
 C:\Users\inari\Desktop\3DSim - Student version\3DPrinterSim\obj\Debug\3DPrinterSim.csproj.CoreCompileInputs.cache
 C:\Users\inari\Desktop\3DSim - Student version\3DPrinterSim\obj\Debug\3DPrinterSim.exe
 C:\Users\inari\Desktop\3DSim - Student version\3DPrinterSim\obj\Debug\3DPrinterSim.pdb
+C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.csprojResolveAssemblyReference.cache
+C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.csproj.CoreCompileInputs.cache
+C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.exe
+C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.pdb
+C:\repo\3DPrinterSim\bin\Debug\3DPrinterSim.exe.config
+C:\repo\3DPrinterSim\bin\Debug\3DPrinterSim.exe
+C:\repo\3DPrinterSim\bin\Debug\3DPrinterSim.pdb
+C:\repo\3DPrinterSim\bin\Debug\Firmware.dll
+C:\repo\3DPrinterSim\bin\Debug\Hardware.dll
+C:\repo\3DPrinterSim\bin\Debug\OpenTK.dll
+C:\repo\3DPrinterSim\bin\Debug\Firmware.pdb
+C:\repo\3DPrinterSim\bin\Debug\OpenTK.xml
