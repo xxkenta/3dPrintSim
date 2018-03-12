@@ -71,6 +71,7 @@ namespace PrinterSimulator
             {
                 Console.Clear();
                 Console.WriteLine("3D Printer Simulation - Control Menu\n");
+                Console.WriteLine("F - File");
                 Console.WriteLine("P - Print");
                 Console.WriteLine("T - Test");
                 Console.WriteLine("Q - Quit");
@@ -78,11 +79,41 @@ namespace PrinterSimulator
                 char ch = Char.ToUpper(Console.ReadKey().KeyChar);
                 switch (ch)
                 {
+
+                    case 'F': // Select file
+                        break;
+
                     case 'P': // Print
                         PrintFile(printer.GetPrinterSim());
                         break;
 
                     case 'T': // Test menu
+                        Console.Clear();
+                        Console.WriteLine("3D Printer Simulation - Test Menu\n");
+                        Console.WriteLine("B - Test build plate movement from top to bottom");
+                        Console.WriteLine("G - Test galvo");
+                        Console.WriteLine("L - Test laser on/off");
+                        Console.WriteLine("T - Test host to firmware connection");
+                        Console.WriteLine("Z - Test build plate movement to specific point");
+
+                        ch = Char.ToUpper(Console.ReadKey().KeyChar);
+                        switch (ch)
+                        {
+                            case 'B': // Test build plate movement from top to bottom
+                                break;
+
+                            case 'G': // Test galvo
+                                break;
+
+                            case 'L': // Test laser on/off
+                                break;
+
+                            case 'T': // Test host to firmware connection
+                                break;
+
+                            case 'Z': // Test build plate movement to specific point
+                                break;
+                        }
                         break;
 
                     case 'Q' :  // Quite
