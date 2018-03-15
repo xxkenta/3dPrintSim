@@ -36,7 +36,7 @@ namespace PrinterSimulator
             swTimer.Start();
 
             // Todo - Read GCODE file and send data to firmware for printing
-            Loop(simCtl);
+            //Loop(simCtl);
 
             swTimer.Stop();
             long elapsedMS = swTimer.ElapsedMilliseconds;
@@ -45,7 +45,7 @@ namespace PrinterSimulator
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
-
+        /*
         static void Loop(PrinterControl simCtl) //Makes it so the function repeats recursively until it is properly sent
         {
             byte cmd;
@@ -72,6 +72,7 @@ namespace PrinterSimulator
                 Loop(simCtl); //Try again until successful
             }
         }
+        */
 
         [STAThread]
 
@@ -139,7 +140,7 @@ namespace PrinterSimulator
                         switch (ch)
                         {
                             case 'B': // Test build plate movement from top to bottom
-                                firmware.setBuildPlateHome();
+                                firmware.SetBuildPlateHome();
                                 break;
 
                             case 'G': // Test galvo
@@ -155,6 +156,14 @@ namespace PrinterSimulator
                                 break;
 
                             case 'Z': // Test build plate movement to specific point
+                                Console.WriteLine("What position on the Z-rail would you like to move the build plate? (0-100): ");
+                                int pos = Convert.ToInt32(Console.ReadLine());
+                                int steps = pos;
+                                firmware.SetBuildPlateHome();
+                                for (int i = 0; i < steps; i++)
+                                {
+                                    firmware.StepStepperUp(steps);
+                                }
                                 break;
 
                             case 'Q': //back to main menu
