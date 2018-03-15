@@ -46,5 +46,21 @@ namespace Firmware
             while (!fInitialized)
                 Thread.Sleep(100);
         }
+
+        //Since the build plate starts at a random point every time, this function moves it all the way up until
+        //the limit switch is pressed. It then steps down 39780 (calculated from datasheet) which will put it at the home position.
+        public void setBuildPlateHome()
+        {
+            while (printer.LimitSwitchPressed() != true)
+            {
+                printer.StepStepper(PrinterControl.StepperDir.STEP_UP);
+            }
+            Console.WriteLine("Build plate is at top and will now move to bottom");
+
+            for (int i = 0; i < 39780; i++)
+            {
+                printer.StepStepper(PrinterControl.StepperDir.STEP_DOWN);
+            }
+        }
     }
 }

@@ -75,16 +75,19 @@ namespace PrinterSimulator
             oThread.Start();
             firmware.WaitForInit();
 
+            PrinterControl tester = new PrinterControl(1, 1, 1, 1);
+
             SetForegroundWindow(ptr);
 
             bool fDone = false;
             while (!fDone)
             {
                 Console.Clear();
-                Console.WriteLine("3D Printer Simulation - Control Menu\n");
+                Console.WriteLine("3D Printer Simulation v0.1 - Control Menu\n");
                 Console.WriteLine("P - Print");
                 Console.WriteLine("T - Test");
                 Console.WriteLine("Q - Quit");
+                
 
                 char ch = Char.ToUpper(Console.ReadKey().KeyChar);
                 switch (ch)
@@ -96,18 +99,19 @@ namespace PrinterSimulator
 
                     case 'T': // Test menu
                         Console.Clear();
-                        Console.WriteLine("3D Printer Simulation - Test Menu\n");
+                        Console.WriteLine("3D Printer Simulation v0.1 - Test Menu\n");
                         Console.WriteLine("B - Test build plate movement from top to bottom");
                         Console.WriteLine("G - Test galvo");
                         Console.WriteLine("L - Test laser on/off");
                         Console.WriteLine("T - Test host to firmware connection");
                         Console.WriteLine("Z - Test build plate movement to specific point");
+                        Console.WriteLine("Q - Back");
 
                         ch = Char.ToUpper(Console.ReadKey().KeyChar);
                         switch (ch)
                         {
                             case 'B': // Test build plate movement from top to bottom
-                                //add functionalty
+                                firmware.setBuildPlateHome();
                                 break;
 
                             case 'G': // Test galvo
@@ -123,12 +127,14 @@ namespace PrinterSimulator
                                 break;
 
                             case 'Z': // Test build plate movement to specific point
-                                //add functionalty
+                                break;
+
+                            case 'Q': //back to main menu
                                 break;
                         }
                         break;
 
-                    case 'Q' :  // Quite
+                    case 'Q' :  // Quit
                         printer.Stop();
                         firmware.Stop();
                         fDone = true;
