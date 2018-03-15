@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
+//using System.Drawing;
 using System.Threading;
 using System.IO;
 using System.Windows;
@@ -36,7 +36,7 @@ namespace PrinterSimulator
             swTimer.Start();
 
             // Todo - Read GCODE file and send data to firmware for printing
-            Loop(simCtl);
+            //Loop(simCtl);
 
             swTimer.Stop();
             long elapsedMS = swTimer.ElapsedMilliseconds;
@@ -45,7 +45,7 @@ namespace PrinterSimulator
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
-
+        /*
         static void Loop(PrinterControl simCtl) //Makes it so the function repeats recursively until it is properly sent
         {
             byte cmd;
@@ -71,7 +71,7 @@ namespace PrinterSimulator
                 simCtl.WriteSerialToFirmware(nack, 1); //Send Nack
                 Loop(simCtl); //Try again until successful
             }
-        }
+        }*/
 
         [STAThread]
 
@@ -147,7 +147,20 @@ namespace PrinterSimulator
                                 break;
 
                             case 'L': // Test laser on/off
-                                //add functionalty
+                                Console.WriteLine("1 - On");
+                                Console.WriteLine("0 - Off");
+
+                                int i = Console.Read();
+                                switch(i)
+                                {
+                                    case '1': // Test Laser On
+                                        firmware.turnLaserOn();
+                                        break;
+                                    
+                                    case '0': // Test Laser Off
+                                        firmware.turnLaserOff();
+                                        break;
+                                }
                                 break;
 
                             case 'T': // Test host to firmware connection

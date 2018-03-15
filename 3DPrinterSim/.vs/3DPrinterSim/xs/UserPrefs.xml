@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.ItemProperties.3DPrinterSim PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="../Firmware/Firmware.cs">
     <Files>
-      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="7" Column="24" />
       <File FileName="../Firmware/Firmware.cs" Line="1" Column="1" />
     </Files>
     <Pads>

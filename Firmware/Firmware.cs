@@ -62,5 +62,15 @@ namespace Firmware
                 printer.StepStepper(PrinterControl.StepperDir.STEP_DOWN);
             }
         }
+
+        public void turnLaserOn()
+        {
+            printer.SetLaser(true);
+        }
+
+        public void turnLaserOff()
+        {
+            printer.SetLaser(false);
+        }
     }
 }
