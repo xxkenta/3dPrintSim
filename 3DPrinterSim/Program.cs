@@ -36,6 +36,7 @@ namespace PrinterSimulator
             swTimer.Start();
 
             // Todo - Read GCODE file and send data to firmware for printing
+            Loop(simCtl);
 
             swTimer.Stop();
             long elapsedMS = swTimer.ElapsedMilliseconds;
@@ -43,6 +44,33 @@ namespace PrinterSimulator
             Console.WriteLine("Total Print Time: {0}", elapsedMS / 1000.0);
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
+        }
+
+        static void Loop(PrinterControl simCtl) //Makes it so the function repeats recursively until it is properly sent
+        {
+            byte cmd;
+            byte len;
+            byte lowCheck;
+            byte highCheck;
+            byte[] packetHeader = { cmd, len, lowCheck, highCheck };
+            byte[] ack = { 0xA5 };
+            byte[] nack = { 0xFF };
+            byte[] packet = {}; //Assign later
+
+            int sent = simCtl.WriteSerialToFirmware(packetHeader, 4); //Send 4 byte header
+            int recieved = simCtl.ReadSerialFromFirmware(firmHeader, 4);//Read 4 byte response (MAKE SURE TO DECLARE FIRMHEADER IN THE FIRMWARE)
+
+            if (sent == recieved) //Check the the firmware recieved the correct header
+            {
+                simCtl.WriteSerialToFirmware(ack, 1); //Send Ack
+                simCtl.WriteSerialToFirmware(packet, len - 4); //Send Rest of packet
+
+            }
+            else
+            {
+                simCtl.WriteSerialToFirmware(nack, 1); //Send Nack
+                Loop(simCtl); //Try again until successful
+            }
         }
 
         [STAThread]
@@ -140,9 +168,7 @@ namespace PrinterSimulator
                         fDone = true;
                         break;
                 }
-
             }
-
         }
     }
 }
