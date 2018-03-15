@@ -82,5 +82,15 @@ namespace Firmware
                 Thread.Sleep(1);
             }
         }
+
+        public void turnLaserOn()
+        {
+            printer.SetLaser(true);
+        }
+
+        public void turnLaserOff()
+        {
+            printer.SetLaser(false);
+        }
     }
 }

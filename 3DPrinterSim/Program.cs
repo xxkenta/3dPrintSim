@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
+//using System.Drawing;
 using System.Threading;
 using System.IO;
 using System.Windows;
@@ -71,8 +71,7 @@ namespace PrinterSimulator
                 simCtl.WriteSerialToFirmware(nack, 1); //Send Nack
                 Loop(simCtl); //Try again until successful
             }
-        }
-        */
+            */
 
         [STAThread]
 
@@ -148,7 +147,20 @@ namespace PrinterSimulator
                                 break;
 
                             case 'L': // Test laser on/off
-                                //add functionalty
+                                Console.WriteLine("1 - On");
+                                Console.WriteLine("0 - Off");
+
+                                int x = Console.Read();
+                                switch(x)
+                                {
+                                    case '1': // Test Laser On
+                                        firmware.turnLaserOn();
+                                        break;
+                                    
+                                    case '0': // Test Laser Off
+                                        firmware.turnLaserOff();
+                                        break;
+                                }
                                 break;
 
                             case 'T': // Test host to firmware connection
