@@ -103,15 +103,13 @@ namespace PrinterSimulator
             oThread.Start();
             firmware.WaitForInit();
 
-            PrinterControl tester = new PrinterControl(1, 1, 1, 1);
-
             SetForegroundWindow(ptr);
 
             bool fDone = false;
             while (!fDone)
             {
                 Console.Clear();
-                Console.WriteLine("3D Printer Simulation v0.1 - Control Menu\n");
+                Console.WriteLine("3D Printer Simulation {0} - Control Menu\n", (object) firmware.GetVer());
                 Console.WriteLine("P - Print");
                 Console.WriteLine("T - Test");
                 Console.WriteLine("Q - Quit");
@@ -127,7 +125,7 @@ namespace PrinterSimulator
 
                     case 'T': // Test menu
                         Console.Clear();
-                        Console.WriteLine("3D Printer Simulation v0.1 - Test Menu\n");
+                        Console.WriteLine("3D Printer Simulation {0} - Test Menu\n", (object) firmware.GetVer());
                         Console.WriteLine("B - Test build plate movement from top to bottom");
                         Console.WriteLine("G - Test galvo");
                         Console.WriteLine("L - Test laser on/off");

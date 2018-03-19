@@ -14,12 +14,17 @@ namespace Firmware
         PrinterControl printer;
         bool fDone = false;
         bool fInitialized = false;
+        string version = "v0.1";
 
         public FirmwareController(PrinterControl printer)
         {
             this.printer = printer;
         }
 
+        public string GetVer()
+        {
+            return this.version;
+        }
         // Handle incoming commands from the serial link
         void Process()
         {
