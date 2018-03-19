@@ -51,44 +51,68 @@ namespace Firmware
         //the limit switch is pressed. It then steps down 39780 (calculated from datasheet) which will put it at the home position.
         public void SetBuildPlateHome()
         {
+            int stepCount = 0;
+
             while (printer.LimitSwitchPressed() != true)
             {
                 printer.StepStepper(PrinterControl.StepperDir.STEP_UP);
-                Thread.Sleep(1);
+                stepCount++;
+                if (stepCount == 40)
+                {
+                    Thread.Sleep(20);
+                    stepCount = 0;
+                }
             }
             Console.WriteLine("Build plate is at top and will now move to bottom");
 
             for (int i = 0; i < 39780; i++)
             {
                 printer.StepStepper(PrinterControl.StepperDir.STEP_DOWN);
-                Thread.Sleep(1);
+                stepCount++;
+                if (stepCount == 40)
+                {
+                    Thread.Sleep(20);
+                    stepCount = 0;
+                }
             }
         }
 
         public void StepStepperUp(int steps)
         {
+            int stepCount = 0;
             for (int i = 0; i < steps; i++)
             {
                 printer.StepStepper(PrinterControl.StepperDir.STEP_UP);
-                Thread.Sleep(1);
+                stepCount++;
+                if (stepCount == 40)
+                {
+                    Thread.Sleep(20);
+                    stepCount = 0;
+                }
             }
         }
 
         public void StepStepperDown(int steps)
         {
+            int stepCount = 0;
             for (int i = 0; i < steps; i++)
             {
                 printer.StepStepper(PrinterControl.StepperDir.STEP_DOWN);
-                Thread.Sleep(1);
+                stepCount++;
+                if (stepCount == 40)
+                {
+                    Thread.Sleep(20);
+                    stepCount = 0;
+                }
             }
         }
 
-        public void turnLaserOn()
+        public void TurnLaserOn()
         {
             printer.SetLaser(true);
         }
 
-        public void turnLaserOff()
+        public void TurnLaserOff()
         {
             printer.SetLaser(false);
         }

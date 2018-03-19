@@ -154,11 +154,11 @@ namespace PrinterSimulator
                                 switch(x)
                                 {
                                     case '1': // Test Laser On
-                                        firmware.turnLaserOn();
+                                        firmware.TurnLaserOn();
                                         break;
                                     
                                     case '0': // Test Laser Off
-                                        firmware.turnLaserOff();
+                                        firmware.TurnLaserOff();
                                         break;
                                 }
                                 break;
@@ -170,12 +170,9 @@ namespace PrinterSimulator
                             case 'Z': // Test build plate movement to specific point
                                 Console.WriteLine("What position on the Z-rail would you like to move the build plate? (0-100): ");
                                 int pos = Convert.ToInt32(Console.ReadLine());
-                                int steps = pos;
+                                int steps = 400*pos;
                                 firmware.SetBuildPlateHome();
-                                for (int i = 0; i < steps; i++)
-                                {
-                                    firmware.StepStepperUp(steps);
-                                }
+                                firmware.StepStepperUp(steps);
                                 break;
 
                             case 'Q': //back to main menu

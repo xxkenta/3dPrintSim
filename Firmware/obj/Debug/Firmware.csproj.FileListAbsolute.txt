@@ -12,13 +12,6 @@ C:/Users/inari/Desktop/3DSim - Student version/Firmware/obj/Debug/Firmware.cspro
 C:/Users/inari/Desktop/3DSim - Student version/Firmware/obj/Debug/Firmware.csproj.CoreCompileInputs.cache
 C:/Users/inari/Desktop/3DSim - Student version/Firmware/obj/Debug/Firmware.dll
 C:/Users/inari/Desktop/3DSim - Student version/Firmware/obj/Debug/Firmware.pdb
-C:/repo/Firmware/bin/Debug/Firmware.dll
-C:/repo/Firmware/bin/Debug/Firmware.pdb
-C:/repo/Firmware/bin/Debug/Hardware.dll
-C:/repo/Firmware/obj/Debug/Firmware.csprojResolveAssemblyReference.cache
-C:/repo/Firmware/obj/Debug/Firmware.csproj.CoreCompileInputs.cache
-C:/repo/Firmware/obj/Debug/Firmware.dll
-C:/repo/Firmware/obj/Debug/Firmware.pdb
 /Users/Sarah/Documents/GitHub/3dPrintSim/Firmware/bin/Debug/Firmware.dll
 /Users/Sarah/Documents/GitHub/3dPrintSim/Firmware/bin/Debug/Firmware.pdb
 /Users/Sarah/Documents/GitHub/3dPrintSim/Firmware/bin/Debug/Hardware.dll
@@ -26,3 +19,10 @@ C:/repo/Firmware/obj/Debug/Firmware.pdb
 /Users/Sarah/Documents/GitHub/3dPrintSim/Firmware/obj/Debug/Firmware.csproj.CoreCompileInputs.cache
 /Users/Sarah/Documents/GitHub/3dPrintSim/Firmware/obj/Debug/Firmware.dll
 /Users/Sarah/Documents/GitHub/3dPrintSim/Firmware/obj/Debug/Firmware.pdb
+C:\repo\Firmware\bin\Debug\Firmware.dll
+C:\repo\Firmware\bin\Debug\Firmware.pdb
+C:\repo\Firmware\bin\Debug\Hardware.dll
+C:\repo\Firmware\obj\Debug\Firmware.csprojResolveAssemblyReference.cache
+C:\repo\Firmware\obj\Debug\Firmware.csproj.CoreCompileInputs.cache
+C:\repo\Firmware\obj\Debug\Firmware.dll
+C:\repo\Firmware\obj\Debug\Firmware.pdb
