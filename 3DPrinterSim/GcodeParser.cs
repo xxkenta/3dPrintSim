@@ -70,7 +70,12 @@ namespace PrinterSimulator
                 while (true)
                 {
                     if (line.StartsWith("G1"))
-                    {
+                    { 
+                        this.xVoltage = 9999;
+                        this.yVoltage = 9999;
+                        this.zRailMovement = 9999;
+                        this.moveBuildPlate = false;
+
                         Console.WriteLine(line);
                         string[] words = line.Split(' ');
                         foreach (var word in words)
@@ -106,6 +111,7 @@ namespace PrinterSimulator
                     else if (line.StartsWith("G92"))
                     {
                         this.laserOn = false;
+                        break;
                     }
                     else
                     {

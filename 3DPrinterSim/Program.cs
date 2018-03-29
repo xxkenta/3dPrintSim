@@ -27,7 +27,9 @@ namespace PrinterSimulator
             //System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
             GcodeParser parser = new GcodeParser(GcodeParser.GetFilePath());
             parser.ParseGcodeLine(parser.GcodeFile);
-            parser.ParseGcodeLine(parser.GcodeFile);
+
+
+
 
 
             Stopwatch swTimer = new Stopwatch();
@@ -43,7 +45,7 @@ namespace PrinterSimulator
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
-<<<<<<< HEAD
+
 
       
         [STAThread]
