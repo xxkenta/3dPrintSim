@@ -10,22 +10,63 @@ using PrinterSimulator;
 
 namespace PrinterSimulator
 {
-    public class CommunicationsProtocol
+    class CommunicationsProtocol
     {
-        PrinterControl control;
-        Packet printer;
-        byte[] buffer = new byte[32];
-
-        public CommunicationsProtocol()
+        public void sendPacket(PrinterControl printer, Packet packet)
         {
-            int header1 = control.WriteSerialToHost(printer.getHeader(), printer.Length);
-            int header2 = control.ReadSerialFromHost(printer.getHeader(), printer.Length);
+            byte[] header = packet.getHeader();
+            printer.WriteSerialToFirmware(header, header.Length);
+            byte[] responseHeader = firmwareReadPacket(printer, header.Length);
 
-            if (header1 != header2)
+            if(sameHead(header, responseHeader) == true)
             {
-                control.WriteSerialToFirmware(buffer, 0xFF);
-            }
+                printer.WriteSerialToFirmware(new byte[] { 0xA5 }, 1);
+                printer.WriteSerialToFirmware(packet.data, packet.data.Length);
 
+                byte[] character = firmwareReadPacket(printer, 1);
+                string response = "";
+                while(character[0] != 0)
+                {
+                    response += ASCIIEncoding.ASCII.GetString(new byte[] { character[0] });
+                    character = firmwareReadPacket(printer, 1);
+                }
+
+                if(response == "SUCCESS")
+                {
+                    return;
+                }
+                sendPacket(printer, packet);
+            }
+            printer.WriteSerialToFirmware(new byte[] { 0xFF }, 1);
+            sendPacket(printer, packet);
+            return;
+        }
+
+
+
+        public byte[] firmwareReadPacket(PrinterControl printer, int expected) 
+        {
+            byte[] data = new byte[expected];
+            printer.ReadSerialFromHost(data, expected);
+            return data;
+        }
+
+
+
+        public bool sameHead(byte[] h1, byte[] h2)
+        {
+            if(h1.Length != h2.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < h1.Length; i++)
+            {
+                if(h1[i] != h2[i])
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
