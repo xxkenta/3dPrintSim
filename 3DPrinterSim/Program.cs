@@ -25,12 +25,10 @@ namespace PrinterSimulator
         static void PrintFile(PrinterControl simCtl)
         {
             //System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
-            string path = "file";
-            OpenFileDialog file = new OpenFileDialog();
-            if (file.ShowDialog() == DialogResult.OK)
-            {
-                path = file.FileName;
-            }
+            GcodeParser parser = new GcodeParser(GcodeParser.GetFilePath());
+            parser.ParseGcodeLine(parser.GcodeFile);
+            parser.ParseGcodeLine(parser.GcodeFile);
+
 
             Stopwatch swTimer = new Stopwatch();
             swTimer.Start();
@@ -45,6 +43,7 @@ namespace PrinterSimulator
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
+
         /*
         static void Loop(PrinterControl simCtl) //Makes it so the function repeats recursively until it is properly sent
         {
