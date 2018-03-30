@@ -10,9 +10,9 @@ using PrinterSimulator;
 
 namespace PrinterSimulator
 {
-    class CommunicationsProtocol
+    public class CommunicationsProtocol
     {
-        public void sendPacket(PrinterControl printer, Packet packet)
+        public void sendPacket(PrinterControl printer, Packet packet, FirmwareController firmware)
         {
             byte[] header = packet.getHeader();
             printer.WriteSerialToFirmware(header, header.Length);
@@ -35,10 +35,10 @@ namespace PrinterSimulator
                 {
                     return;
                 }
-                sendPacket(printer, packet);
+                sendPacket(printer, packet, firmware);
             }
             printer.WriteSerialToFirmware(new byte[] { 0xFF }, 1);
-            sendPacket(printer, packet);
+            sendPacket(printer, packet, firmware);
             return;
         }
 
@@ -52,6 +52,11 @@ namespace PrinterSimulator
         }
 
 
+
+        public void processCmd(Packet packet, FirmwareController firmware)
+        {
+            
+        }
 
         public bool sameHead(byte[] h1, byte[] h2)
         {
