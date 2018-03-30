@@ -1,24 +1,13 @@
 ﻿<Properties StartupConfiguration="{4ACD40EA-504A-430E-950A-6902EF0ABB54}|Default">
   <MonoDevelop.Ide.ItemProperties.3DPrinterSim PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="CommunicationsProtocol.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Firmware/Firmware.cs">
     <Files>
-      <File FileName="../Firmware/Firmware.cs" Line="34" Column="17" />
-      <File FileName="Program.cs" Line="49" Column="12" />
-      <File FileName="Packet.cs" Line="25" Column="9" />
-      <File FileName="CommunicationsProtocol.cs" Line="2" Column="21" />
+      <File FileName="../Firmware/Firmware.cs" Line="6" Column="30" />
+      <File FileName="Program.cs" Line="35" Column="13" />
+      <File FileName="Packet.cs" Line="48" Column="55" />
+      <File FileName="CommunicationsProtocol.cs" Line="7" Column="16" />
+      <File FileName="GcodeParser.cs" Line="55" Column="10" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="3DPrinterSim" expanded="True">
-            <Node name="3DPrinterSim" expanded="True">
-              <Node name="CommunicationsProtocol.cs" selected="True" />
-            </Node>
-            <Node name="Firmware" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
