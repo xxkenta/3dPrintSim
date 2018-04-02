@@ -26,7 +26,10 @@ namespace PrinterSimulator
         {
             //System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
             GcodeParser parser = new GcodeParser(GcodeParser.GetFilePath());
-            parser.ParseGcodeLine(parser.GcodeFile);
+            for (int i = 0; i < 100; i++)
+            {
+                parser.ParseGcodeLine(parser.GcodeFile);
+            }
 
 
 
