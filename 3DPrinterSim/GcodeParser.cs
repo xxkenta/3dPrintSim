@@ -70,7 +70,13 @@ namespace PrinterSimulator
                 while (true)
                 {
                     if (line.StartsWith("G1"))
-                    {
+                    { 
+                        //set these variables to 9999 so host can tell the difference between an galvo move command and a zrail move command
+                        this.xVoltage = 9999;
+                        this.yVoltage = 9999;
+                        this.zRailMovement = 9999;
+                        this.moveBuildPlate = false;
+
                         Console.WriteLine(line);
                         string[] words = line.Split(' ');
                         foreach (var word in words)
@@ -96,16 +102,17 @@ namespace PrinterSimulator
                                 }
                             }
                         }
-                        Console.WriteLine(this.xVoltage);
-                        Console.WriteLine(this.yVoltage);
-                        Console.WriteLine(this.zRailMovement);
-                        Console.WriteLine(this.laserOn);
-                        Console.WriteLine(this.moveBuildPlate);
+                        Console.WriteLine("x=" + this.xVoltage);
+                        Console.WriteLine("y=" + this.yVoltage);
+                        Console.WriteLine("z=" + this.zRailMovement);
+                        Console.WriteLine("laser: " + this.laserOn);
+                        Console.WriteLine("build plate: " + this.moveBuildPlate);
                         break;
                     }
                     else if (line.StartsWith("G92"))
                     {
                         this.laserOn = false;
+                        break;
                     }
                     else
                     {
