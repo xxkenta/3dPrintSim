@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Hardware;
-using PrinterSimulator;
+//using PrinterSimulator;
 
 namespace Firmware
 {

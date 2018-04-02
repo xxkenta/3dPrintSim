@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Hardware;
 
-namespace PrinterSimulator
+namespace Firmware
 {
     public class Packet
     {
