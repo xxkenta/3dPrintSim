@@ -48,7 +48,6 @@ namespace Firmware
                     else
                     {
                         response = ProcessCmd(header[0], data);
-                        printer.WriteSerialToHost(response, response.Length);
                     }
                     printer.WriteSerialToHost(response, response.Length);
                 }
@@ -164,6 +163,14 @@ namespace Firmware
                     stepCount = 0;
                 }
             }
+        }
+        public void TurnLaserOn()
+        {
+            printer.SetLaser(true);
+        }
+        public void TurnLaserOff()
+        {
+            printer.SetLaser(false);
         }
     }
 }

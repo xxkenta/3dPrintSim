@@ -68,14 +68,5 @@ namespace PrinterSimulator
             return true;
         }
 
-
-
-        public enum Cmds
-        {
-            LASER = 0,
-            GALVOS = 1,
-            ZCOR = 2,
-            RESET = 3
-        }
     }
 }
