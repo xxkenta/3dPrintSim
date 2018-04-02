@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Hardware;
 
-namespace PrinterSimulator
+namespace Firmware
 {
     public class Packet
     {
@@ -61,5 +61,13 @@ namespace PrinterSimulator
             return new Packet((byte)Cmds.RESET, top);
         }
 
+
+        public enum Cmds
+        {
+            LASER = 0,
+            GALVOS = 1,
+            ZCOR = 2,
+            RESET = 3
+        }
     }
 }
