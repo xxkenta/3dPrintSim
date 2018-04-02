@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Hardware;
+using PrinterSimulator;
 
 namespace Firmware
 {
@@ -31,6 +32,27 @@ namespace Firmware
             // Todo - receive incoming commands from the serial link and act on those commands by calling the low-level hardwarwe APIs, etc.
             while (!fDone)
             {
+                byte[] header = ReadPacket(printer, 4);
+                byte length = header[1];
+                byte[] response;
+
+                printer.WriteSerialToHost(header, 4);
+
+                byte[] ack = ReadPacket(printer, 1);
+                if(ack[0] == 0xA5)
+                {
+                    byte[] data = ReadPacket(printer, length);
+                    if(data.Length == 1)
+                    {
+                        response = Encoding.ASCII.GetBytes("Timeout");
+                    }
+                    else
+                    {
+                        response = ProcessCmd(header[0], data);
+                    }
+                    printer.WriteSerialToHost(response, response.Length);
+                }
+
             }
         }
 
@@ -50,6 +72,38 @@ namespace Firmware
         {
             while (!fInitialized)
                 Thread.Sleep(100);
+        }
+
+        public byte[] ReadPacket(PrinterControl printer, int expected)
+        {
+            byte[] data = new byte[expected];
+            if (printer.ReadSerialFromHost(data, expected) != expected)
+            {
+                return new byte[0];
+            }
+            return data;
+        }
+
+        public byte[] ProcessCmd(byte cmd, byte[] data)
+        {
+            if(cmd == (byte) Packet.Cmds.LASER)
+            {
+                printer.SetLaser(BitConverter.ToBoolean(data, 0));
+            }
+            else if(cmd == (byte) Packet.Cmds.GALVOS)
+            {
+                printer.MoveGalvos(BitConverter.ToSingle(data, 0), BitConverter.ToSingle(data, 4));
+            }
+            else if(cmd == (byte) Packet.Cmds.ZCOR) // Find more efficient method
+            {
+                SetBuildPlateHome();
+                StepStepperDown((int)(400 * BitConverter.ToSingle(data, 0)));
+            }
+            else if(cmd == (byte) Packet.Cmds.RESET)
+            {
+                SetBuildPlateHome();
+            }
+            return Encoding.ASCII.GetBytes("Success");
         }
 
         //Since the build plate starts at a random point every time, this function moves it all the way up until
@@ -111,12 +165,10 @@ namespace Firmware
                 }
             }
         }
-
         public void TurnLaserOn()
         {
             printer.SetLaser(true);
         }
-
         public void TurnLaserOff()
         {
             printer.SetLaser(false);

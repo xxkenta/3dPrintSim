@@ -48,7 +48,10 @@ namespace PrinterSimulator
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8c3a17fafae59043585763d60d825d00c09be410
 
       
         [STAThread]
