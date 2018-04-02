@@ -61,5 +61,14 @@ namespace PrinterSimulator
             return new Packet((byte)Cmds.RESET, top);
         }
 
+
+
+        public enum Cmds
+        {
+            LASER = 0,
+            GALVOS = 1,
+            ZCOR = 2,
+            RESET = 3
+        }
     }
 }
