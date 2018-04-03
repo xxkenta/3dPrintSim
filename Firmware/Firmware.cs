@@ -50,7 +50,14 @@ namespace Firmware
                     {
                         response = ProcessCmd(header[0], data);
                     }
-                    printer.WriteSerialToHost(response, response.Length);
+                    //printer.WriteSerialToHost(response, response.Length);
+                    for (int i = 0; i < response.Length; i++)
+                    {
+                        byte[] character = { response[i] };
+                        printer.WriteSerialToHost(character, 1);
+                    }
+                    byte[] nullByte = { (byte)0 };
+                    printer.WriteSerialToHost(nullByte, 1);
                 }
 
             }
@@ -77,7 +84,9 @@ namespace Firmware
         public byte[] ReadPacket(PrinterControl printer, int expected)
         {
             byte[] data = new byte[expected];
+
             byte[] failure = new byte[4];
+
             if (printer.ReadSerialFromHost(data, expected) != expected)
             {
                 return failure;
@@ -104,7 +113,7 @@ namespace Firmware
             {
                 SetBuildPlateHome();
             }
-            return Encoding.ASCII.GetBytes("Success");
+            return Encoding.ASCII.GetBytes("SUCCESS");
         }
 
         //Since the build plate starts at a random point every time, this function moves it all the way up until
