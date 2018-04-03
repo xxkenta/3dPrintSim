@@ -40,17 +40,19 @@ namespace Firmware
             return new Packet((byte) Cmds.LASER, BitConverter.GetBytes(onOff));
         }
 
-        public Packet MoveGalvos(float x, float y)
+        public Packet MoveGalvos(double x, double y)
         {
-            byte xCor = (byte) x;
-            byte yCor = (byte)y;
-            byte[] cors = { xCor, yCor };
-            return new Packet((byte) Cmds.GALVOS, cors);
+            x = x * 0.025;
+            y = y * 0.025;
+            byte xVolt = (byte) x;
+            byte yVolt = (byte)y;
+            byte[] volts = { xVolt, yVolt };
+            return new Packet((byte) Cmds.GALVOS, volts);
         }
 
-        public Packet MoveZ(float prevZ, float newZ)
+        public Packet MoveZ(double prevZ, double newZ)
         {
-            float z = prevZ - newZ;
+            double z = prevZ - newZ;
             byte[] zcor = { (byte)z };
             return new Packet((byte)Cmds.ZCOR, zcor);
         }

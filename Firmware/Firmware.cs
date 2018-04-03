@@ -36,7 +36,10 @@ namespace Firmware
                 byte length = header[1];
                 byte[] response;
 
-                printer.WriteSerialToHost(header, 4);
+                if (header.Any(b => b != 0))
+                {
+                    printer.WriteSerialToHost(header, 4);
+                }
 
                 byte[] ack = ReadPacket(printer, 1);
                 if(ack[0] == 0xA5)

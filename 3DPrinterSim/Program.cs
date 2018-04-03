@@ -30,6 +30,7 @@ namespace PrinterSimulator
             {
                 parser.ParseGcodeLine(parser.GcodeFile);
                 Console.WriteLine("x=" + parser.xVoltage);
+                
                 Console.WriteLine("y=" + parser.yVoltage);
                 Console.WriteLine("z=" + parser.zRailMovement);
                 Console.WriteLine("laser: " + parser.laserOn);

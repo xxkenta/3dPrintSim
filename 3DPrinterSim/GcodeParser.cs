@@ -113,6 +113,10 @@ namespace PrinterSimulator
                     else
                     {
                         line = gcodeFile.ReadLine();
+                        if ((line = gcodeFile.ReadLine()) != null)
+                        {
+                            break;
+                        }
                     }
 
                 }
