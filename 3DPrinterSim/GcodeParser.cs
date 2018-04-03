@@ -102,11 +102,7 @@ namespace PrinterSimulator
                                 }
                             }
                         }
-                        Console.WriteLine("x=" + this.xVoltage);
-                        Console.WriteLine("y=" + this.yVoltage);
-                        Console.WriteLine("z=" + this.zRailMovement);
-                        Console.WriteLine("laser: " + this.laserOn);
-                        Console.WriteLine("build plate: " + this.moveBuildPlate);
+                        
                         break;
                     }
                     else if (line.StartsWith("G92"))

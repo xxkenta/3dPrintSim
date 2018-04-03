@@ -55,7 +55,6 @@
     <Compile Include="GcodeParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Packet.cs" />
     <Compile Include="CommunicationsProtocol.cs" />
   </ItemGroup>
   <ItemGroup>

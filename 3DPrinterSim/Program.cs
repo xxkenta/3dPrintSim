@@ -26,15 +26,16 @@ namespace PrinterSimulator
         {
             //System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
             GcodeParser parser = new GcodeParser(GcodeParser.GetFilePath());
-            for (int i = 0; i < 100; i++)
+            while (!parser.GcodeFile.EndOfStream)
             {
                 parser.ParseGcodeLine(parser.GcodeFile);
+                Console.WriteLine("x=" + parser.xVoltage);
+                Console.WriteLine("y=" + parser.yVoltage);
+                Console.WriteLine("z=" + parser.zRailMovement);
+                Console.WriteLine("laser: " + parser.laserOn);
+                Console.WriteLine("build plate: " + parser.moveBuildPlate);
             }
-
-
-
-
-
+            
             Stopwatch swTimer = new Stopwatch();
             swTimer.Start();
 
