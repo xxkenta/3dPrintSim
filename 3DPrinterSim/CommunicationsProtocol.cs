@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Firmware;
 using Hardware;
 
 namespace PrinterSimulator
