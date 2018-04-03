@@ -77,9 +77,10 @@ namespace Firmware
         public byte[] ReadPacket(PrinterControl printer, int expected)
         {
             byte[] data = new byte[expected];
+            byte[] failure = new byte[4];
             if (printer.ReadSerialFromHost(data, expected) != expected)
             {
-                return new byte[0];
+                return failure;
             }
             return data;
         }
