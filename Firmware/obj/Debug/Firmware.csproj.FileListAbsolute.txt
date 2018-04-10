@@ -33,3 +33,9 @@ C:/repo/Firmware/obj/Debug/Firmware.pdb
 /Users/kevinwright/Documents/GitHub/3dPrintSim/Firmware/obj/Debug/Firmware.csproj.CoreCompileInputs.cache
 /Users/kevinwright/Documents/GitHub/3dPrintSim/Firmware/obj/Debug/Firmware.dll
 /Users/kevinwright/Documents/GitHub/3dPrintSim/Firmware/obj/Debug/Firmware.pdb
+C:\Users\kevinwright\Downloads\3dPrintSim\Firmware\bin\Debug\Firmware.dll
+C:\Users\kevinwright\Downloads\3dPrintSim\Firmware\bin\Debug\Firmware.pdb
+C:\Users\kevinwright\Downloads\3dPrintSim\Firmware\bin\Debug\Hardware.dll
+C:\Users\kevinwright\Downloads\3dPrintSim\Firmware\obj\Debug\Firmware.csprojResolveAssemblyReference.cache
+C:\Users\kevinwright\Downloads\3dPrintSim\Firmware\obj\Debug\Firmware.dll
+C:\Users\kevinwright\Downloads\3dPrintSim\Firmware\obj\Debug\Firmware.pdb

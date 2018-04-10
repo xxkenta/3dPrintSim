@@ -6,6 +6,8 @@ namespace ZRail
 {
     public class ZRailController
     {
+        private const int MaxZRailVolocity = 16080;
+
         public ZRailController()
         {
             
@@ -16,9 +18,9 @@ namespace ZRail
             return 0;
         }
 
-        public void LimitVelocity()
+        public void LimitVelocity(PrinterCon dir)
         {
-            
+            while (StepperDir.)
         }
 
         public void LimitAccelleration()
