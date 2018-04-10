@@ -11,7 +11,7 @@ namespace Firmware
     public class Packet
     {
         public byte cmd;
-        public int Length;
+        public int length;
         public ushort checksum;
         public byte[] data;
 
@@ -19,20 +19,26 @@ namespace Firmware
         {
             this.cmd = cmd;
             this.data = data;
-            this.Length = data.Length;
-            FindChecksum();
+            this.length = data.Length;
+            FindChecksum(cmd, data, length);
         }
 
         public byte [] GetHeader()
         {
-            byte[] header = {cmd, (byte) Length, BitConverter.GetBytes(checksum)[0], BitConverter.GetBytes(checksum)[1]};
+            byte[] header = {cmd, (byte) length, BitConverter.GetBytes(checksum)[0], BitConverter.GetBytes(checksum)[1]};
 
             return header;
         }
 
-        public void FindChecksum()
+        public void FindChecksum(byte cmd, byte[] data, int length)
         {
-            
+            foreach (byte element in data)
+            {
+                checksum += element;
+            }
+
+            checksum += cmd;
+            checksum += (byte) length;
         }
 
         public Packet LaserOn(bool onOff)
