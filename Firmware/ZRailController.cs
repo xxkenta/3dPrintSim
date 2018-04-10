@@ -7,20 +7,20 @@ namespace Firmware
 {
     public class ZRailController
     {
-<<<<<<< HEAD
-        private const int MaxZRailVolocity = 16080;
 
-=======
+        private const int MaxZRailVelocity = 16080;
         private List<double> positionHistory;
->>>>>>> 32c288a3a2af9cbebaad84021d2061c74346edfb
+
         public ZRailController()
         {
             positionHistory = new List<double>();
         }
 
-        public int ConvertZ(int steps) 
+        public int ConvertZRailMMToSteps(int mmHeight) 
         {
-            return 0;
+            int steps = mmHeight * 400;
+
+            return steps;
         }
 
         public void LimitVelocity(PrinterControl.StepperDir dir)
@@ -28,9 +28,24 @@ namespace Firmware
       
         }
 
-        public void LimitAcceleration()
+        public void GetVelocity(int initialPosition, int lastPosition, int timerTime)
         {
-            
+            int currentVelocity;
+
+            currentVelocity = (lastPosition - initialPosition) / timerTime;
+
+            return currentVelocity;
+        }
+
+        // Needs to track previousVelocity and generate current getVelocity()
+        public void LimitAcceleration(int previousVelocity, int timerTime) 
+        {
+            int currentVelocity ();
+            int currentAcceleration;
+
+            currentAcceleration = (currentVelocity - previousVelocity) / timerTime;
+
+            return currentAcceleration;
         }
 
         // Should be called whenever position is changed.
