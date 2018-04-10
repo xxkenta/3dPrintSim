@@ -47,7 +47,7 @@ namespace Firmware
                     byte[] data = ReadPacket(printer, length);
                     Console.WriteLine(length);
                     Console.WriteLine(data.Length);
-                    if(data.Length == 1)
+                    if(data.Length == 0)
                     {
                         response = Encoding.ASCII.GetBytes("Timeout");
                     }
