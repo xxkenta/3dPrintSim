@@ -18,9 +18,11 @@ namespace Firmware
             positionHistory = new List<double>();
         }
 
-        public int ConvertZ(int steps) 
+        public int ConvertZ(int mmHeight) 
         {
-            return 0;
+            int steps = mmHeight * 400;
+
+            return steps;
         }
 
         public void LimitVelocity(PrinterControl.StepperDir dir)
