@@ -16,7 +16,7 @@ namespace Firmware
             positionHistory = new List<double>();
         }
 
-        public int ConvertZ(int mmHeight) 
+        public int ConvertZRailMMToSteps(int mmHeight) 
         {
             int steps = mmHeight * 400;
 
