@@ -109,8 +109,14 @@ namespace Firmware
             }
             else if(cmd == (byte) Packet.Cmds.ZCOR) // Find more efficient method
             {
-                SetBuildPlateHome();
-                StepStepperDown((int)(400 * BitConverter.ToSingle(data, 0)));
+                if (BitConverter.ToSingle(data, 0) < 0)
+                {
+                    StepStepperDown((int)(-1 * 400 * BitConverter.ToSingle(data, 0)));
+                }
+                else
+                {
+                    StepStepperUp((int)(400 * BitConverter.ToSingle(data, 0)));
+                }
             }
             else if(cmd == (byte) Packet.Cmds.RESET)
             {
