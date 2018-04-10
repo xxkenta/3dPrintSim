@@ -7,7 +7,12 @@ namespace Firmware
 {
     public class ZRailController
     {
+<<<<<<< HEAD
+        private const int MaxZRailVolocity = 16080;
+
+=======
         private List<double> positionHistory;
+>>>>>>> 32c288a3a2af9cbebaad84021d2061c74346edfb
         public ZRailController()
         {
             positionHistory = new List<double>();
@@ -18,9 +23,9 @@ namespace Firmware
             return 0;
         }
 
-        public void LimitVelocity()
+        public void LimitVelocity(PrinterControl.StepperDir dir)
         {
-            
+      
         }
 
         public void LimitAcceleration()
