@@ -45,7 +45,9 @@ namespace Firmware
                 if(ack[0] == 0xA5)
                 {
                     byte[] data = ReadPacket(printer, length);
-                    if(data.Length == 1)
+                    Console.WriteLine(length);
+                    Console.WriteLine(data.Length);
+                    if(data.Length == 0)
                     {
                         response = Encoding.ASCII.GetBytes("Timeout");
                     }

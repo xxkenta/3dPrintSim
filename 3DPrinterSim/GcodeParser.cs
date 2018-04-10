@@ -16,6 +16,7 @@ namespace PrinterSimulator
         public bool laserOn = false;
         public bool moveBuildPlate = false;
         public double zRailMovement = 0;
+        public double prevZRail = 0;
         public StreamReader GcodeFile;
 
         public GcodeParser(string filename)
@@ -69,6 +70,8 @@ namespace PrinterSimulator
             {
                 while (true)
                 {
+                    this.prevZRail = this.zRailMovement;
+
                     if (line.StartsWith("G1"))
                     { 
                         //set these variables to 9999 so host can tell the difference between an galvo move command and a zrail move command
