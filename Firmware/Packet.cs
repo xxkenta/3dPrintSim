@@ -35,22 +35,22 @@ namespace Firmware
             
         }
 
-        public Packet LaserOn(bool onOff)
+        public static Packet LaserOn(bool onOff)
         {
             return new Packet((byte) Cmds.LASER, BitConverter.GetBytes(onOff));
         }
 
-        public Packet MoveGalvos(double x, double y)
+        public static Packet MoveGalvos(double x, double y)
         {
-            x = x * 0.025;
-            y = y * 0.025;
+            x = x * 0.025; //converts coordinate to voltage
+            y = y * 0.025; //converts coordinate to voltage
             byte xVolt = (byte) x;
-            byte yVolt = (byte)y;
+            byte yVolt = (byte) y;
             byte[] volts = { xVolt, yVolt };
             return new Packet((byte) Cmds.GALVOS, volts);
         }
 
-        public Packet MoveZ(double prevZ, double newZ)
+        public static Packet MoveZ(double prevZ, double newZ)
         {
             double z = prevZ - newZ;
             byte[] zcor = { (byte)z };

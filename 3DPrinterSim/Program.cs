@@ -26,21 +26,36 @@ namespace PrinterSimulator
         {
             //System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
             GcodeParser parser = new GcodeParser(GcodeParser.GetFilePath());
-            while (!parser.GcodeFile.EndOfStream)
-            {
-                parser.ParseGcodeLine(parser.GcodeFile);
-                Console.WriteLine("x=" + parser.xVoltage);
-                
-                Console.WriteLine("y=" + parser.yVoltage);
-                Console.WriteLine("z=" + parser.zRailMovement);
-                Console.WriteLine("laser: " + parser.laserOn);
-                Console.WriteLine("build plate: " + parser.moveBuildPlate);
-            }
-            
+
             Stopwatch swTimer = new Stopwatch();
             swTimer.Start();
 
-            // Todo - Read GCODE file and send data to firmware for printing
+            while (!parser.GcodeFile.EndOfStream)
+            {
+                parser.ParseGcodeLine(parser.GcodeFile);
+
+                Console.WriteLine("laser: " + parser.laserOn);
+                Console.WriteLine("x=" + parser.xVoltage);
+                Console.WriteLine("y=" + parser.yVoltage);
+                Console.WriteLine("build plate: " + parser.moveBuildPlate);
+                Console.WriteLine("z=" + parser.zRailMovement);
+
+                Packet laser = Packet.LaserOn(parser.laserOn);
+
+                CommunicationsProtocol.SendPacket(simCtl, laser);
+
+                if (parser.xVoltage != 9999 && parser.yVoltage != 9999) // checks for valid x,y coordinates from parser
+                {
+                    Packet galv = Packet.MoveGalvos(parser.xVoltage, parser.yVoltage);
+                    CommunicationsProtocol.SendPacket(simCtl, galv);
+                }
+                else if (parser.moveBuildPlate) // checks if GCODE command was to move zrail
+                {
+                    Packet Z = Packet.MoveZ(parser.prevZRail, parser.zRailMovement);
+                    CommunicationsProtocol.SendPacket(simCtl, Z);
+                }
+            }
+
             //Loop(simCtl);
 
             swTimer.Stop();

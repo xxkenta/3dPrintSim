@@ -7,7 +7,7 @@ namespace PrinterSimulator
 {
     public class CommunicationsProtocol
     {
-        public void SendPacket(PrinterControl printer, Packet packet)
+        public static void SendPacket(PrinterControl printer, Packet packet)
         {
             byte[] header = packet.GetHeader();
             printer.WriteSerialToFirmware(header, header.Length);
@@ -45,7 +45,7 @@ namespace PrinterSimulator
 
 
 
-        public byte[] ReadPacket(PrinterControl printer, int expected) 
+        public static byte[] ReadPacket(PrinterControl printer, int expected) 
         {
             byte[] data = new byte[expected];
             printer.ReadSerialFromFirmware(data, expected);
@@ -53,7 +53,7 @@ namespace PrinterSimulator
         }
 
 
-        public bool SameHead(byte[] h1, byte[] h2)
+        public static bool SameHead(byte[] h1, byte[] h2)
         {
             if(h1.Length != h2.Length)
             {
