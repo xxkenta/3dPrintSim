@@ -134,8 +134,15 @@ namespace PrinterSimulator
                                 firmware.SetBuildPlateHome();
                                 break;
 
-                            case 'G': // Test galvo
-                                //add functionalty
+                            case 'G': // Test galvo; should this take coordinates or voltages?
+                                Console.WriteLine("Input xVoltage amount (-2.5 - 2.5): ");
+                                float xVolt = float.Parse(Console.ReadLine());
+
+                                Console.WriteLine("Input yVoltage amount (-2.5 - 2.5): ");
+                                float yVolt = float.Parse(Console.ReadLine());
+
+                                // What function call actually moves the galvos?
+
                                 break;
 
                             case 'L': // Test laser on/off
