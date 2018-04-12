@@ -11,7 +11,7 @@ namespace PrinterSimulator
         {
             byte[] header = packet.GetHeader();
             printer.WriteSerialToFirmware(header, header.Length);
-            byte[] responseHeader = ReadPacket(printer, header.Length);
+            byte[] responseHeader = ReadPacket(printer, header.Length); // this is currently not returning a good response header
 
             if(SameHead(header, responseHeader) == true)
             {
