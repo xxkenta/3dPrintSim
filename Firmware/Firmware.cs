@@ -88,13 +88,16 @@ namespace Firmware
         {
             byte[] data = new byte[expected];
 
-            byte[] failure = new byte[4];
-
-            if (printer.ReadSerialFromHost(data, expected) != expected)
+            //byte[] failure = new byte[4];
+            while (true)
             {
-                return failure;
+                int test = printer.ReadSerialFromHost(data, expected);
+                if (test != 0)
+                {
+                    return data;
+                }
             }
-            return data;
+            //return failure;
         }
 
         public byte[] ProcessCmd(byte cmd, byte[] data)
@@ -105,17 +108,17 @@ namespace Firmware
             }
             else if(cmd == (byte) Packet.Cmds.GALVOS)
             {
-                printer.MoveGalvos(BitConverter.ToSingle(data, 0), BitConverter.ToSingle(data, 4));
+                printer.MoveGalvos((float) data[0], (float) data[1]);
             }
             else if(cmd == (byte) Packet.Cmds.ZCOR) // Find more efficient method
             {
-                if (BitConverter.ToSingle(data, 0) < 0)
+                if (((float) data[0]) < 0)
                 {
-                    StepStepperDown((int)(-1 * 400 * BitConverter.ToSingle(data, 0)));
+                    StepStepperDown((int)(-1 * 400 * ((float)data[0])));
                 }
                 else
                 {
-                    StepStepperUp((int)(400 * BitConverter.ToSingle(data, 0)));
+                    StepStepperUp((int)(400 * ((float)data[0])));
                 }
             }
             else if(cmd == (byte) Packet.Cmds.RESET)

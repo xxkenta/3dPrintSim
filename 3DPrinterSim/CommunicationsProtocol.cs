@@ -48,8 +48,16 @@ namespace PrinterSimulator
         public static byte[] ReadPacket(PrinterControl printer, int expected) 
         {
             byte[] data = new byte[expected];
-            printer.ReadSerialFromFirmware(data, expected);
-            return data;
+            //byte[] failure = new byte[4];
+            while (true)
+            {
+                int test = printer.ReadSerialFromFirmware(data, expected);
+                if (test != 0)
+                {
+                    return data;
+                }
+            }
+            //return failure;
         }
 
 
