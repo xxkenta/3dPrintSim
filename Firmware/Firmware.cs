@@ -108,17 +108,18 @@ namespace Firmware
             }
             else if(cmd == (byte) Packet.Cmds.GALVOS)
             {
-                printer.MoveGalvos((float) data[0], (float) data[1]);
+                printer.MoveGalvos((float)BitConverter.ToDouble(data, 0), (float)BitConverter.ToDouble(data, 8));
             }
             else if(cmd == (byte) Packet.Cmds.ZCOR) // Find more efficient method
-            {
+            { 
+                Console.WriteLine(BitConverter.ToDouble(data,0));
                 if (((float) data[0]) < 0)
                 {
-                    StepStepperDown((int)(-1 * 400 * ((float)data[0])));
+                    StepStepperDown((int)(400 * BitConverter.ToDouble(data, 0)));
                 }
                 else
                 {
-                    StepStepperUp((int)(400 * ((float)data[0])));
+                    StepStepperUp((int)(400 * BitConverter.ToDouble(data, 0)));
                 }
             }
             else if(cmd == (byte) Packet.Cmds.RESET)
