@@ -146,7 +146,7 @@ namespace Firmware
             }
             Console.WriteLine("Build plate is at top and will now move to bottom");
 
-            for (int i = 0; i < 39780; i++)
+            for (int i = 0; i < 40000; i++)
             {
                 printer.StepStepper(PrinterControl.StepperDir.STEP_DOWN);
                 stepCount++;

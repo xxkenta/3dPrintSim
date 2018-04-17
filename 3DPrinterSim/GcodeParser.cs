@@ -10,9 +10,8 @@ namespace PrinterSimulator
 {
     public class GcodeParser
     {
-
-        public double xVoltage = 0;
-        public double yVoltage = 0;
+        public double xVoltage = 9999;
+        public double yVoltage = 9999;
         public bool laserOn = false;
         public bool moveBuildPlate = false;
         public double zRailMovement = 0;
@@ -116,7 +115,7 @@ namespace PrinterSimulator
                     else
                     {
                         line = gcodeFile.ReadLine();
-                        if ((line = gcodeFile.ReadLine()) != null)
+                        if ((line = gcodeFile.ReadLine()) == null)
                         {
                             break;
                         }

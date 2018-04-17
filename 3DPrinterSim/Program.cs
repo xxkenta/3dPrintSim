@@ -29,28 +29,27 @@ namespace PrinterSimulator
 
             Stopwatch swTimer = new Stopwatch();
             swTimer.Start();
-
+            
             while (!parser.GcodeFile.EndOfStream)
             {
                 parser.ParseGcodeLine(parser.GcodeFile);
 
+                Console.WriteLine("---------- SENDING ------------");
                 Console.WriteLine("laser: " + parser.laserOn);
-                Console.WriteLine("x=" + parser.xVoltage);
-                Console.WriteLine("y=" + parser.yVoltage);
-                Console.WriteLine("build plate: " + parser.moveBuildPlate);
-                Console.WriteLine("z=" + parser.zRailMovement);
-
                 Packet laser = Packet.LaserOn(parser.laserOn);
-
                 CommunicationsProtocol.SendPacket(simCtl, laser);
 
                 if (parser.xVoltage != 9999 && parser.yVoltage != 9999) // checks for valid x,y coordinates from parser
                 {
+                    Console.WriteLine("x=" + parser.xVoltage);
+                    Console.WriteLine("y=" + parser.yVoltage);
                     Packet galv = Packet.MoveGalvos(parser.xVoltage, parser.yVoltage);
                     CommunicationsProtocol.SendPacket(simCtl, galv);
                 }
                 else if (parser.moveBuildPlate) // checks if GCODE command was to move zrail
                 {
+                    Console.WriteLine("build plate: " + parser.moveBuildPlate);
+                    Console.WriteLine("z=" + parser.zRailMovement);
                     Packet Z = Packet.MoveZ(parser.prevZRail, parser.zRailMovement);
                     CommunicationsProtocol.SendPacket(simCtl, Z);
                 }
@@ -114,6 +113,7 @@ namespace PrinterSimulator
                 {
 
                     case 'P': // Print
+                        firmware.SetBuildPlateHome();
                         PrintFile(printer.GetPrinterSim());
                         break;
 

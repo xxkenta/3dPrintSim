@@ -38,3 +38,4 @@ C:\repo\Firmware\bin\Debug\Hardware.dll
 C:\repo\Firmware\obj\Debug\Firmware.csproj.CoreCompileInputs.cache
 C:\repo\Firmware\obj\Debug\Firmware.dll
 C:\repo\Firmware\obj\Debug\Firmware.pdb
+C:\repo\Firmware\obj\Debug\Firmware.csprojResolveAssemblyReference.cache
