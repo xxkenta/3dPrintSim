@@ -10,6 +10,7 @@ namespace Firmware
 
         private const int MaxZRailVelocity = 16080;
         private List<double> positionHistory;
+        PrinterControl printer;
 
         public ZRailController()
         {
@@ -23,9 +24,17 @@ namespace Firmware
             return steps;
         }
 
-        public void LimitVelocity(PrinterControl.StepperDir dir)
+           public void LimitVelocity()
         {
-
+            int currentVelocity = 0;
+            while(printer.StepStepper(PrinterControl.StepperDir.STEP_UP) || 
+                printer.StepStepper(PrinterControl.StepperDir.STEP_DOWN)) 
+            {
+                while(currentVelocity < MaxZRailVelocity)
+                {
+                    
+                }
+            }
         }
 
         public int GetVelocity(int initialPosition, int lastPosition, int timerTime)
