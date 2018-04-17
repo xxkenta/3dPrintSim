@@ -47,6 +47,7 @@
     <Compile Include="Firmware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Packet.cs" />
+    <Compile Include="ZRailController.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

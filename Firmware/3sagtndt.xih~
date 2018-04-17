@@ -16,7 +16,7 @@ namespace Firmware
             positionHistory = new List<double>();
         }
 
-        public int ConvertZRailMMToSteps(int mmHeight) 
+        public int ConvertZRailMMToSteps(int mmHeight)
         {
             int steps = mmHeight * 400;
 
@@ -25,7 +25,7 @@ namespace Firmware
 
         public void LimitVelocity(PrinterControl.StepperDir dir)
         {
-            
+
         }
 
         public int GetVelocity(int initialPosition, int lastPosition, int timerTime)
@@ -38,9 +38,9 @@ namespace Firmware
         }
 
         // Needs to track previousVelocity and generate current getVelocity()
-        public int LimitAcceleration(int previousVelocity, int timerTime) 
+        public int LimitAcceleration(int previousVelocity, int timerTime)
         {
-            int currentVelocity;
+            int currentVelocity = 0;
             int currentAcceleration;
 
             currentAcceleration = (currentVelocity - previousVelocity) / timerTime;
@@ -51,7 +51,7 @@ namespace Firmware
         // Should be called whenever position is changed.
         public void trackHistory(double lastPosition)
         {
-           positionHistory.Add(lastPosition);
+            positionHistory.Add(lastPosition);
         }
     }
 }

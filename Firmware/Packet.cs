@@ -50,17 +50,19 @@ namespace Firmware
         {
             x = x * 0.025; //converts coordinate to voltage
             y = y * 0.025; //converts coordinate to voltage
-            byte xVolt = (byte) x;
-            byte yVolt = (byte) y;
-            byte[] volts = { xVolt, yVolt };
+            byte[] xVolt = BitConverter.GetBytes(x);
+            byte[] yVolt = BitConverter.GetBytes(y);
+            List<byte> list1 = new List<byte>(xVolt);
+            List<byte> list2 = new List<byte>(yVolt);
+            list1.AddRange(list2);
+            byte[] volts = list1.ToArray();
             return new Packet((byte) Cmds.GALVOS, volts);
         }
 
         public static Packet MoveZ(double prevZ, double newZ)
         {
             double z = newZ - prevZ;
-            byte zVal = (byte)z;
-            byte[] zcor = { zVal };
+            byte[] zcor = BitConverter.GetBytes(z);
             return new Packet((byte)Cmds.ZCOR, zcor);
         }
 
