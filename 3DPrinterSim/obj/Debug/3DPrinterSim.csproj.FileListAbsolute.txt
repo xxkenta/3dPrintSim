@@ -71,3 +71,6 @@ C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.csprojResolveAssemblyReference.cache
 C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.csproj.CoreCompileInputs.cache
 C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.exe
 C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.pdb
+W:\3dprinter\3dPrintSim\3DPrinterSim\bin\Debug\3DPrinterSim.exe.config
+W:\3dprinter\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.exe
+W:\3dprinter\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.pdb
