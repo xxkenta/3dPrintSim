@@ -59,7 +59,8 @@ namespace Firmware
         public static Packet MoveZ(double prevZ, double newZ)
         {
             double z = newZ - prevZ;
-            byte[] zcor = { (byte)z };
+            byte zVal = (byte)z;
+            byte[] zcor = { zVal };
             return new Packet((byte)Cmds.ZCOR, zcor);
         }
 
