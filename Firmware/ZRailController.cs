@@ -7,14 +7,10 @@ namespace Firmware
 {
     public class ZRailController
     {
-<<<<<<< HEAD
-        private List<double> positionHistory;
-=======
 
         private const int MaxZRailVelocity = 16080;
         private List<double> positionHistory;
 
->>>>>>> 7e287ff20d78e5d5085a83fdf31a7c40fef4a14b
         public ZRailController()
         {
             positionHistory = new List<double>();
@@ -32,7 +28,7 @@ namespace Firmware
             
         }
 
-        public void GetVelocity(int initialPosition, int lastPosition, int timerTime)
+        public int GetVelocity(int initialPosition, int lastPosition, int timerTime)
         {
             int currentVelocity;
 
@@ -42,9 +38,9 @@ namespace Firmware
         }
 
         // Needs to track previousVelocity and generate current getVelocity()
-        public void LimitAcceleration(int previousVelocity, int timerTime) 
+        public int LimitAcceleration(int previousVelocity, int timerTime) 
         {
-            int currentVelocity ();
+            int currentVelocity;
             int currentAcceleration;
 
             currentAcceleration = (currentVelocity - previousVelocity) / timerTime;
