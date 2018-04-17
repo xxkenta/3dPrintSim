@@ -74,3 +74,11 @@ C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.pdb
 W:\3dprinter\3dPrintSim\3DPrinterSim\bin\Debug\3DPrinterSim.exe.config
 W:\3dprinter\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.exe
 W:\3dprinter\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.pdb
+W:\3dprinter\3dPrintSim\3DPrinterSim\bin\Debug\3DPrinterSim.exe
+W:\3dprinter\3dPrintSim\3DPrinterSim\bin\Debug\3DPrinterSim.pdb
+W:\3dprinter\3dPrintSim\3DPrinterSim\bin\Debug\Firmware.dll
+W:\3dprinter\3dPrintSim\3DPrinterSim\bin\Debug\Hardware.dll
+W:\3dprinter\3dPrintSim\3DPrinterSim\bin\Debug\OpenTK.dll
+W:\3dprinter\3dPrintSim\3DPrinterSim\bin\Debug\Firmware.pdb
+W:\3dprinter\3dPrintSim\3DPrinterSim\bin\Debug\OpenTK.xml
+W:\3dprinter\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.csprojResolveAssemblyReference.cache

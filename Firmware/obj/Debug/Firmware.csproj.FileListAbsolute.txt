@@ -39,3 +39,6 @@ C:\repo\Firmware\obj\Debug\Firmware.csproj.CoreCompileInputs.cache
 C:\repo\Firmware\obj\Debug\Firmware.dll
 C:\repo\Firmware\obj\Debug\Firmware.pdb
 C:\repo\Firmware\obj\Debug\Firmware.csprojResolveAssemblyReference.cache
+W:\3dprinter\3dPrintSim\Firmware\obj\Debug\Firmware.csprojResolveAssemblyReference.cache
+W:\3dprinter\3dPrintSim\Firmware\obj\Debug\Firmware.dll
+W:\3dprinter\3dPrintSim\Firmware\obj\Debug\Firmware.pdb
