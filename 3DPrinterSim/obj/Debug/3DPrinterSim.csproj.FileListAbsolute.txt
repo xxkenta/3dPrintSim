@@ -106,3 +106,7 @@ C:/Users/kentaito/Desktop/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.csprojR
 /Users/karlypeckham/Dropbox/Grade 16/Semester 2/Software Engineering/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.csproj.CoreCompileInputs.cache
 /Users/karlypeckham/Dropbox/Grade 16/Semester 2/Software Engineering/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.exe
 /Users/karlypeckham/Dropbox/Grade 16/Semester 2/Software Engineering/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.pdb
+C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.csprojResolveAssemblyReference.cache
+C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.csproj.CoreCompileInputs.cache
+C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.exe
+C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.pdb

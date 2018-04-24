@@ -32,13 +32,6 @@ C:/Users/kevinwright/Downloads/3dPrintSim/Firmware/bin/Debug/Hardware.dll
 C:/Users/kevinwright/Downloads/3dPrintSim/Firmware/obj/Debug/Firmware.csprojResolveAssemblyReference.cache
 C:/Users/kevinwright/Downloads/3dPrintSim/Firmware/obj/Debug/Firmware.dll
 C:/Users/kevinwright/Downloads/3dPrintSim/Firmware/obj/Debug/Firmware.pdb
-C:/repo/Firmware/bin/Debug/Firmware.dll
-C:/repo/Firmware/bin/Debug/Firmware.pdb
-C:/repo/Firmware/bin/Debug/Hardware.dll
-C:/repo/Firmware/obj/Debug/Firmware.csproj.CoreCompileInputs.cache
-C:/repo/Firmware/obj/Debug/Firmware.dll
-C:/repo/Firmware/obj/Debug/Firmware.pdb
-C:/repo/Firmware/obj/Debug/Firmware.csprojResolveAssemblyReference.cache
 W:/3dprinter/3dPrintSim/Firmware/obj/Debug/Firmware.csprojResolveAssemblyReference.cache
 W:/3dprinter/3dPrintSim/Firmware/obj/Debug/Firmware.dll
 W:/3dprinter/3dPrintSim/Firmware/obj/Debug/Firmware.pdb
@@ -55,3 +48,10 @@ C:/Users/kentaito/Desktop/3dPrintSim/Firmware/obj/Debug/Firmware.pdb
 /Users/karlypeckham/Dropbox/Grade 16/Semester 2/Software Engineering/3dPrintSim/Firmware/bin/Debug/Firmware.dll
 /Users/karlypeckham/Dropbox/Grade 16/Semester 2/Software Engineering/3dPrintSim/Firmware/bin/Debug/Firmware.pdb
 /Users/karlypeckham/Dropbox/Grade 16/Semester 2/Software Engineering/3dPrintSim/Firmware/bin/Debug/Hardware.dll
+C:\repo\Firmware\bin\Debug\Firmware.dll
+C:\repo\Firmware\bin\Debug\Firmware.pdb
+C:\repo\Firmware\bin\Debug\Hardware.dll
+C:\repo\Firmware\obj\Debug\Firmware.csprojResolveAssemblyReference.cache
+C:\repo\Firmware\obj\Debug\Firmware.csproj.CoreCompileInputs.cache
+C:\repo\Firmware\obj\Debug\Firmware.dll
+C:\repo\Firmware\obj\Debug\Firmware.pdb
