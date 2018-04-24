@@ -11,9 +11,16 @@ namespace Firmware
         private const int MaxZRailVelocity = 16080;
         private List<double> positionHistory;
 
-        public ZRailController()
+        private PrinterControl printer;
+
+        private int secondsElapsedOnce = 1;
+        private int waitCounterOnce = 0;
+        private long waitTimeOnce = 0;
+
+        public ZRailController(PrinterControl printer)
         {
             positionHistory = new List<double>();
+            this.printer = printer;
         }
 
         public int ConvertZRailMMToSteps(int mmHeight)
@@ -23,11 +30,80 @@ namespace Firmware
             return steps;
         }
 
-        public void LimitVelocity(PrinterControl.StepperDir dir)
+           public void LimitVelocity()
         {
+            int currentVelocity = 0;
+            while(printer.StepStepper(PrinterControl.StepperDir.STEP_UP) || 
+                printer.StepStepper(PrinterControl.StepperDir.STEP_DOWN)) 
+            {
+                while(currentVelocity < MaxZRailVelocity)
+                {
+                    
+                }
+            }
+        }
+
+        public void MoveZRail(PrinterControl.StepperDir dir, int steps)
+        {
+            int secondsElapsed = 1;
+            int waitCounter = 0;
+            long waitTime;
+
+            for (int i = 0; i < steps; i++) 
+            {
+                waitTime = (1 / (secondsElapsed * 4 * 400)) * 1000000;
+
+                if (waitTime < 62.5)
+                {
+                    waitTime = 63;
+                }
+
+                printer.StepStepper(dir);
+
+                printer.WaitMicroseconds(waitTime);
+
+                waitCounter += (int) waitTime;
+
+                if (waitCounter >= 1000000)
+                {
+                    secondsElapsed += 1;
+                    waitCounter = 0;
+                }
+
+            }
 
         }
 
+        public void StepOnce(PrinterControl.StepperDir dir)
+        {
+
+            waitTimeOnce = (1 / (secondsElapsedOnce * 4 * 400)) * 1000000;
+
+            if (waitTimeOnce < 62.5)
+            {
+                waitTimeOnce = 63;
+            }
+
+            printer.StepStepper(dir);
+
+            printer.WaitMicroseconds(waitTimeOnce);
+
+            waitCounterOnce += (int)waitTimeOnce;
+
+            if (waitCounterOnce >= 1000000)
+            {
+                secondsElapsedOnce += 1;
+                waitCounterOnce = 0;
+            }
+
+        }
+
+        public void ResetSteps()
+        {
+            secondsElapsedOnce = 1;
+            waitCounterOnce = 0;
+            waitTimeOnce = 0;
+        }
         public int GetVelocity(int initialPosition, int lastPosition, int timerTime)
         {
             int currentVelocity;

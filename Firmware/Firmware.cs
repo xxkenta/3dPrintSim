@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Hardware;
 //using PrinterSimulator;
 
+
 namespace Firmware
 {
 
@@ -16,10 +17,12 @@ namespace Firmware
         bool fDone = false;
         bool fInitialized = false;
         string version = "v0.1";
+        ZRailController zRailController;
 
         public FirmwareController(PrinterControl printer)
         {
             this.printer = printer;
+            zRailController = new ZRailController(printer);
         }
 
         public string GetVer()
@@ -129,30 +132,17 @@ namespace Firmware
         //the limit switch is pressed. It then steps down 39780 (calculated from datasheet) which will put it at the home position.
         public void SetBuildPlateHome()
         {
-            int stepCount = 0;
 
             while (printer.LimitSwitchPressed() != true)
             {
-                printer.StepStepper(PrinterControl.StepperDir.STEP_UP);
-                stepCount++;
-                if (stepCount == 40)
-                {
-                    Thread.Sleep(20);
-                    stepCount = 0;
-                }
+                zRailController.StepOnce(PrinterControl.StepperDir.STEP_UP);
             }
+
+            zRailController.ResetSteps();
+
             Console.WriteLine("Build plate is at top and will now move to bottom");
 
-            for (int i = 0; i < 40000; i++)
-            {
-                printer.StepStepper(PrinterControl.StepperDir.STEP_DOWN);
-                stepCount++;
-                if (stepCount == 40)
-                {
-                    Thread.Sleep(20);
-                    stepCount = 0;
-                }
-            }
+            zRailController.MoveZRail(PrinterControl.StepperDir.STEP_DOWN, 39780);
         }
 
         public void StepStepperUp(int steps)
