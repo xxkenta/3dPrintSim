@@ -10,54 +10,57 @@ namespace PrinterSimulator
         public static void SendPacket(PrinterControl printer, Packet packet)
         {
             byte[] header = packet.GetHeader();
-            printer.WriteSerialToFirmware(header, header.Length);
-            byte[] responseHeader = ReadPacket(printer, header.Length); // this is currently not returning a good response header
+            int result = 0;
+            while (result != header.Length)
+            {
+                result = printer.WriteSerialToFirmware(header, header.Length);
+            }
+            byte[] responseHeader = ReadPacket(printer, header.Length);
 
-            if(SameHead(header, responseHeader) == true)
+            if (SameHead(header, responseHeader) == true)
             {
                 printer.WriteSerialToFirmware(new byte[] { 0xA5 }, 1);
                 printer.WriteSerialToFirmware(packet.data, packet.data.Length);
 
                 byte[] character = ReadPacket(printer, 1);
                 string response = "";
-                while(character[0] != 0)
+                while (character[0] != 0)
                 {
                     response += Encoding.ASCII.GetString(new byte[] { character[0] });
                     character = ReadPacket(printer, 1);
                 }
 
-                if(response == "SUCCESS")
+                if (response == "SUCCESS")
                 {
                     return;
                 }
-                if(response.Contains("VERSION"))
+                else if (response.Contains("VERSION"))
                 {
                     return;
                 }
-
+                else
+                {
+                    SendPacket(printer, packet);
+                }
+            }
+            else
+            {
+                printer.WriteSerialToFirmware(new byte[] { 0xFF }, 1);
                 SendPacket(printer, packet);
             }
-            printer.WriteSerialToFirmware(new byte[] { 0xFF }, 1);
-            SendPacket(printer, packet);
             return;
         }
-
-
-
 
         public static byte[] ReadPacket(PrinterControl printer, int expected) 
         {
             byte[] data = new byte[expected];
-            //byte[] failure = new byte[4];
-            while (true)
+            byte[] failure = new byte[4];
+            int response = 0;
+            while (response != expected)
             {
-                int test = printer.ReadSerialFromFirmware(data, expected);
-                if (test != 0)
-                {
-                    return data;
-                }
+                response = printer.ReadSerialFromFirmware(data, expected);
             }
-            //return failure;
+            return data;
         }
 
 

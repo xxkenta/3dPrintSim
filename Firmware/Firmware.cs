@@ -90,17 +90,13 @@ namespace Firmware
         public byte[] ReadPacket(PrinterControl printer, int expected)
         {
             byte[] data = new byte[expected];
-
-            //byte[] failure = new byte[4];
-            while (true)
+            byte[] failure = new byte[4];
+            int response = 0;
+            while (response != expected)
             {
-                int test = printer.ReadSerialFromHost(data, expected);
-                if (test != 0)
-                {
-                    return data;
-                }
+                response = printer.ReadSerialFromHost(data, expected);
             }
-            //return failure;
+            return data;
         }
 
         public byte[] ProcessCmd(byte cmd, byte[] data)
