@@ -112,13 +112,14 @@ namespace Firmware
             else if(cmd == (byte) Packet.Cmds.ZCOR) // Find more efficient method
             { 
                 Console.WriteLine(BitConverter.ToDouble(data,0));
+                int steps = (int)(400 * BitConverter.ToDouble(data, 0));
                 if (((float) data[0]) < 0)
                 {
-                    StepStepperDown((int)(400 * BitConverter.ToDouble(data, 0)));
+                    zRailController.MoveZRail(PrinterControl.StepperDir.STEP_DOWN, steps);
                 }
                 else
                 {
-                    StepStepperUp((int)(400 * BitConverter.ToDouble(data, 0)));
+                    zRailController.MoveZRail(PrinterControl.StepperDir.STEP_UP, steps);
                 }
             }
             else if(cmd == (byte) Packet.Cmds.RESET)

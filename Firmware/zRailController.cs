@@ -53,9 +53,9 @@ namespace Firmware
             {
                 waitTime = (1 / (secondsElapsed * 4 * 400)) * 1000000;
 
-                if (waitTime < 62.5)
+                if (waitTime < 70)
                 {
-                    waitTime = 63;
+                    waitTime = 70;
                 }
 
                 printer.StepStepper(dir);
@@ -79,9 +79,9 @@ namespace Firmware
             // ResetSteps() must be called as soon as you are done using this function
             waitTimeOnce = (1 / (secondsElapsedOnce * 4 * 400)) * 1000000;
 
-            if (waitTimeOnce < 62.5)
+            if (waitTimeOnce < 70)
             {
-                waitTimeOnce = 63;
+                waitTimeOnce = 70;
             }
 
             printer.StepStepper(dir);
