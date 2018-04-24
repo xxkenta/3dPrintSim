@@ -13,9 +13,9 @@ namespace Firmware
 
         private PrinterControl printer;
 
-        private int secondsElapsedOnce = 1;
-        private long waitCounterOnce = 0;
-        private long waitTimeOnce = 0;
+        private double secondsElapsedOnce = 1;
+        private double waitCounterOnce = 0;
+        private double waitTimeOnce = 0;
 
         public ZRailController(PrinterControl printer)
         {
@@ -86,7 +86,7 @@ namespace Firmware
 
             printer.StepStepper(dir);
 
-            printer.WaitMicroseconds(waitTimeOnce);
+            printer.WaitMicroseconds((long)waitTimeOnce);
 
             waitCounterOnce += waitTimeOnce;
 

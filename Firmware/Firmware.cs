@@ -92,7 +92,8 @@ namespace Firmware
             byte[] data = new byte[expected];
             byte[] failure = new byte[0];
             int response = 0;
-            while (response != expected)
+            int count = 0;
+            while (count < 100)
             {
                 response = printer.ReadSerialFromHost(data, expected);
             }
@@ -136,7 +137,7 @@ namespace Firmware
         }
 
         //Since the build plate starts at a random point every time, this function moves it all the way up until
-        //the limit switch is pressed. It then steps down 39780 (calculated from datasheet) which will put it at the home position.
+        //the limit switch is pressed. It then steps down 40000 (calculated from datasheet) which will put it at the home position.
         public void SetBuildPlateHome()
         {
 
@@ -149,7 +150,7 @@ namespace Firmware
 
             Console.WriteLine("Build plate is at top and will now move to bottom");
 
-            zRailController.MoveZRail(PrinterControl.StepperDir.STEP_DOWN, 39780);
+            zRailController.MoveZRail(PrinterControl.StepperDir.STEP_DOWN, 40000);
         }
 
         public void StepStepperUp(int steps)
