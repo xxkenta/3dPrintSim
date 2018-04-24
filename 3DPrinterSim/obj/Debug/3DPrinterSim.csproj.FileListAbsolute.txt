@@ -59,18 +59,6 @@ C:/Users/kevinwright/Downloads/3dPrintSim/3DPrinterSim/bin/Debug/OpenTK.dll
 C:/Users/kevinwright/Downloads/3dPrintSim/3DPrinterSim/bin/Debug/Firmware.pdb
 C:/Users/kevinwright/Downloads/3dPrintSim/3DPrinterSim/bin/Debug/OpenTK.xml
 C:/Users/kevinwright/Downloads/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.csprojResolveAssemblyReference.cache
-C:/repo/3DPrinterSim/bin/Debug/3DPrinterSim.exe.config
-C:/repo/3DPrinterSim/bin/Debug/3DPrinterSim.exe
-C:/repo/3DPrinterSim/bin/Debug/3DPrinterSim.pdb
-C:/repo/3DPrinterSim/bin/Debug/Firmware.dll
-C:/repo/3DPrinterSim/bin/Debug/Hardware.dll
-C:/repo/3DPrinterSim/bin/Debug/OpenTK.dll
-C:/repo/3DPrinterSim/bin/Debug/Firmware.pdb
-C:/repo/3DPrinterSim/bin/Debug/OpenTK.xml
-C:/repo/3DPrinterSim/obj/Debug/3DPrinterSim.csprojResolveAssemblyReference.cache
-C:/repo/3DPrinterSim/obj/Debug/3DPrinterSim.csproj.CoreCompileInputs.cache
-C:/repo/3DPrinterSim/obj/Debug/3DPrinterSim.exe
-C:/repo/3DPrinterSim/obj/Debug/3DPrinterSim.pdb
 W:/3dprinter/3dPrintSim/3DPrinterSim/bin/Debug/3DPrinterSim.exe.config
 W:/3dprinter/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.exe
 W:/3dprinter/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.pdb
@@ -106,6 +94,14 @@ C:/Users/kentaito/Desktop/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.csprojR
 /Users/karlypeckham/Dropbox/Grade 16/Semester 2/Software Engineering/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.csproj.CoreCompileInputs.cache
 /Users/karlypeckham/Dropbox/Grade 16/Semester 2/Software Engineering/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.exe
 /Users/karlypeckham/Dropbox/Grade 16/Semester 2/Software Engineering/3dPrintSim/3DPrinterSim/obj/Debug/3DPrinterSim.pdb
+C:\repo\3DPrinterSim\bin\Debug\3DPrinterSim.exe.config
+C:\repo\3DPrinterSim\bin\Debug\3DPrinterSim.exe
+C:\repo\3DPrinterSim\bin\Debug\3DPrinterSim.pdb
+C:\repo\3DPrinterSim\bin\Debug\Firmware.dll
+C:\repo\3DPrinterSim\bin\Debug\Hardware.dll
+C:\repo\3DPrinterSim\bin\Debug\OpenTK.dll
+C:\repo\3DPrinterSim\bin\Debug\Firmware.pdb
+C:\repo\3DPrinterSim\bin\Debug\OpenTK.xml
 C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.csprojResolveAssemblyReference.cache
 C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.csproj.CoreCompileInputs.cache
 C:\repo\3DPrinterSim\obj\Debug\3DPrinterSim.exe
