@@ -13,9 +13,9 @@ namespace Firmware
 
         private PrinterControl printer;
 
-        private int secondsElapsedOnce = 1;
-        private long waitCounterOnce = 0;
-        private long waitTimeOnce = 0;
+        private double secondsElapsedOnce = 1;
+        private double waitCounterOnce = 0;
+        private double waitTimeOnce = 0;
 
         public ZRailController(PrinterControl printer)
         {
@@ -45,9 +45,9 @@ namespace Firmware
 
         public void MoveZRail(PrinterControl.StepperDir dir, int steps)
         {
-            int secondsElapsed = 1;
-            int waitCounter = 0;
-            long waitTime;
+            double secondsElapsed = 1;
+            double waitCounter = 0;
+            double waitTime;
 
             for (int i = 0; i < steps; i++) 
             {
@@ -60,7 +60,7 @@ namespace Firmware
 
                 printer.StepStepper(dir);
 
-                printer.WaitMicroseconds(waitTime);
+                printer.WaitMicroseconds((long) waitTime);
 
                 waitCounter += (int) waitTime;
 
@@ -79,14 +79,14 @@ namespace Firmware
             // ResetSteps() must be called as soon as you are done using this function
             waitTimeOnce = (1 / (secondsElapsedOnce * 4 * 400)) * 1000000;
 
-            if (waitTimeOnce < 64)
+            if (waitTimeOnce < 62.5)
             {
-                waitTimeOnce = 64;
+                waitTimeOnce = 63;
             }
 
             printer.StepStepper(dir);
 
-            printer.WaitMicroseconds(waitTimeOnce);
+            printer.WaitMicroseconds((long)waitTimeOnce);
 
             waitCounterOnce += waitTimeOnce;
 

@@ -142,7 +142,7 @@ namespace Firmware
 
             Console.WriteLine("Build plate is at top and will now move to bottom");
 
-            zRailController.MoveZRail(PrinterControl.StepperDir.STEP_DOWN, 39780);
+            zRailController.MoveZRail(PrinterControl.StepperDir.STEP_DOWN, 40000);
         }
 
         public void StepStepperUp(int steps)
