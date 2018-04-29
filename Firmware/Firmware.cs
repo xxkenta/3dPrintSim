@@ -42,6 +42,7 @@ namespace Firmware
                 if (header.Any(b => b != 0))
                 {
                     printer.WriteSerialToHost(header, 4);
+                    Console.WriteLine("Firmware sending to host: " + Encoding.UTF8.GetString(header));
                 }
 
                 byte[] ack = ReadPacket(printer, 1);
@@ -90,12 +91,14 @@ namespace Firmware
         public byte[] ReadPacket(PrinterControl printer, int expected)
         {
             byte[] data = new byte[expected];
-            byte[] failure = new byte[0];
+            byte[] failure = new byte[4];
             int response = 0;
             int count = 0;
-            while (count < 100)
+            while (count < 10000)
             {
                 response = printer.ReadSerialFromHost(data, expected);
+                //Console.WriteLine("Firmware reading from host: " + data);
+                count++;
             }
             if(response == expected)
             {

@@ -14,6 +14,7 @@ namespace PrinterSimulator
             while (result != header.Length)
             {
                 result = printer.WriteSerialToFirmware(header, header.Length);
+                Console.WriteLine("Host sending to firmware: " + Encoding.UTF8.GetString(header));
             }
             byte[] responseHeader = ReadPacket(printer, header.Length);
 
@@ -54,12 +55,13 @@ namespace PrinterSimulator
         public static byte[] ReadPacket(PrinterControl printer, int expected) 
         {
             byte[] data = new byte[expected];
-            byte[] failure = new byte[0];
+            byte[] failure = new byte[4];
             int response = 0;
             int count = 0;
-            while (count < 100)
+            while (count < 10000)
             {
                 response = printer.ReadSerialFromFirmware(data, expected);
+                count++;
             }
             if(response == expected)
             {

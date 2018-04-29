@@ -55,7 +55,7 @@ namespace Firmware
 
                 if (waitTime < 62.5)
                 {
-                    waitTime = 63;
+                    waitTime = 70;
                 }
 
                 printer.StepStepper(dir);
@@ -81,7 +81,7 @@ namespace Firmware
 
             if (waitTimeOnce < 62.5)
             {
-                waitTimeOnce = 63;
+                waitTimeOnce = 70;
             }
 
             printer.StepStepper(dir);
