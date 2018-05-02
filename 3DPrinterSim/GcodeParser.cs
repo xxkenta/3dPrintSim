@@ -12,6 +12,7 @@ namespace PrinterSimulator
     {
         public double xVoltage = 9999;
         public double yVoltage = 9999;
+        public bool prevLaserOn = true;
         public bool laserOn = false;
         public bool moveBuildPlate = false;
         public double zRailMovement = 0;
@@ -70,16 +71,16 @@ namespace PrinterSimulator
                 while (true)
                 {
                     this.prevZRail = this.zRailMovement;
+                    this.prevLaserOn = this.laserOn;
 
-                    if (line.StartsWith("G1"))
+                    if (line.StartsWith("G1") || line.StartsWith("M"))
                     { 
                         //set these variables to 9999 so host can tell the difference between an galvo move command and a zrail move command
                         this.xVoltage = 9999;
                         this.yVoltage = 9999;
-                        this.zRailMovement = 9999;
                         this.moveBuildPlate = false;
 
-                        Console.WriteLine(line);
+                        //Console.WriteLine(line);
                         string[] words = line.Split(' ');
                         foreach (var word in words)
                         {
@@ -94,14 +95,15 @@ namespace PrinterSimulator
                             if (word.StartsWith("Z"))
                             {
                                 this.zRailMovement = Convert.ToDouble(word.Substring(1));
+                                //Console.WriteLine("Parsed zrail coord: " + this.zRailMovement);
                                 this.moveBuildPlate = true;
                             }
                             if (word.StartsWith("E"))
                             {
-                                if (Convert.ToDouble(word.Substring(1)) > 0)
-                                {
+                                //if (Convert.ToDouble(word.Substring(1)) > 0)
+                                //{
                                     this.laserOn = true;
-                                }
+                                //}
                             }
                         }
                         

@@ -10,18 +10,35 @@ namespace PrinterSimulator
         public static void SendPacket(PrinterControl printer, Packet packet)
         {
             byte[] header = packet.GetHeader();
+            byte[] headerCopy = new byte[4];
+            header.CopyTo(headerCopy, 0);
+
             int result = 0;
-            while (result != header.Length)
-            {
-                result = printer.WriteSerialToFirmware(header, header.Length);
-                Console.WriteLine("Host sending to firmware: " + Encoding.UTF8.GetString(header));
-            }
+            //Console.WriteLine("\nHost sending to firmware: ");
+            //for (int i = 0; i < header.Length; i++)
+            //{
+            //    Console.Write(" ");
+            //    Console.Write(header[i]);
+            //}
+            result = printer.WriteSerialToFirmware(headerCopy, header.Length);
+
             byte[] responseHeader = ReadPacket(printer, header.Length);
 
             if (SameHead(header, responseHeader) == true)
             {
+                //Console.WriteLine("\nHost sent ACK to firmware: ");
                 printer.WriteSerialToFirmware(new byte[] { 0xA5 }, 1);
-                printer.WriteSerialToFirmware(packet.data, packet.data.Length);
+
+                //Console.WriteLine("\nHost sending packet to firmware: ");
+                //for (int i = 0; i < packet.data.Length; i++)
+                //{
+                //    Console.Write(" ");
+                //    Console.Write(packet.data[i]);
+                //}
+                byte[] packetDataCopy = new byte[packet.data.Length];
+                packet.data.CopyTo(packetDataCopy, 0);
+
+                printer.WriteSerialToFirmware(packetDataCopy, packet.data.Length);
 
                 byte[] character = ReadPacket(printer, 1);
                 string response = "";
@@ -30,7 +47,7 @@ namespace PrinterSimulator
                     response += Encoding.ASCII.GetString(new byte[] { character[0] });
                     character = ReadPacket(printer, 1);
                 }
-
+                //Console.WriteLine("\nResponse: " + response);
                 if (response == "SUCCESS")
                 {
                     return;
@@ -56,27 +73,46 @@ namespace PrinterSimulator
         {
             byte[] data = new byte[expected];
             byte[] failure = new byte[4];
-            int response = 0;
             int count = 0;
-            while (count < 10000)
+            while (count < 10000000)
             {
-                response = printer.ReadSerialFromFirmware(data, expected);
+                int response = printer.ReadSerialFromFirmware(data, expected);
+                if (response == expected)
+                {
+                    //Console.WriteLine("\nHost is reading: ");
+                    //for (int i = 0; i < data.Length; i++)
+                    //{
+                    //    Console.Write(" ");
+                    //    Console.Write(data[i]);
+                    //}
+                    return data;
+                }
                 count++;
             }
-            if(response == expected)
-            {
-                return data;
-            }
-            else
-            {
-                return failure;
-            }
+            return failure;
         }
 
 
         public static bool SameHead(byte[] h1, byte[] h2)
         {
-            if(h1.Length != h2.Length)
+            //Console.WriteLine("\n-- Checking Header is Same --");
+            //Console.WriteLine("H1 Length: " + h1.Length);
+            //Console.WriteLine("H2 Length: " + h2.Length);
+            //Console.WriteLine("H1 contents: ");
+            //for (int i = 0; i < h1.Length; i++)
+            //{
+            //    Console.Write(" ");
+            //    Console.Write(h1[i]);
+            //}
+            //Console.WriteLine("\nH2 contents: ");
+            //for (int i = 0; i < h2.Length; i++)
+            //{
+            //    Console.Write(" ");
+            //    Console.Write(h2[i]);
+            //}
+            //Console.WriteLine(" ");
+
+            if (h1.Length != h2.Length)
             {
                 return false;
             }

@@ -20,7 +20,7 @@ namespace Firmware
             this.cmd = cmd;
             this.data = data;
             this.length = data.Length;
-            FindChecksum(cmd, data, length);
+            this.checksum = FindChecksum(cmd, data, length);
         }
 
         public byte [] GetHeader()
@@ -30,15 +30,24 @@ namespace Firmware
             return header;
         }
 
-        public void FindChecksum(byte cmd, byte[] data, int length)
+        public ushort FindChecksum(byte cmd, byte[] data, int length)
         {
+            //Console.WriteLine("\nHost Checksum Calculation: ");
+            //Console.WriteLine("CMD: " + cmd);
+            //Console.WriteLine("Data: ");
+            
+            checksum = 0;
             foreach (byte element in data)
             {
-                checksum += element;
+                this.checksum += element;
+                //Console.Write(" ");
+                //Console.Write(element);
             }
-
+            //Console.WriteLine("\nLength: " + length);
             checksum += cmd;
             checksum += (byte) length;
+
+            return checksum;
         }
 
         public static Packet LaserOn(bool onOff)
@@ -61,6 +70,8 @@ namespace Firmware
 
         public static Packet MoveZ(double prevZ, double newZ)
         {
+            //Console.WriteLine("New Z: " + newZ);
+            //Console.WriteLine("Old Z: " + prevZ);
             double z = newZ - prevZ;
             byte[] zcor = BitConverter.GetBytes(z);
             return new Packet((byte)Cmds.ZCOR, zcor);

@@ -24,7 +24,6 @@ namespace PrinterSimulator
     {
         static void PrintFile(PrinterControl simCtl)
         {
-            //System.IO.StreamReader file = new System.IO.StreamReader("..\\..\\..\\SampleSTLs\\F-35_Corrected.gcode");
             GcodeParser parser = new GcodeParser(GcodeParser.GetFilePath());
 
             Stopwatch swTimer = new Stopwatch();
@@ -34,29 +33,22 @@ namespace PrinterSimulator
             {
                 parser.ParseGcodeLine(parser.GcodeFile);
 
-                Console.WriteLine("---------- SENDING ------------");
-                Console.WriteLine("laser: " + parser.laserOn);
-                Packet laser = Packet.LaserOn(parser.laserOn);
-                CommunicationsProtocol.SendPacket(simCtl, laser);
-
+                if(parser.prevLaserOn != parser.laserOn)
+                {
+                    Packet laser = Packet.LaserOn(parser.laserOn);
+                    CommunicationsProtocol.SendPacket(simCtl, laser);
+                }
                 if (parser.xVoltage != 9999 && parser.yVoltage != 9999) // checks for valid x,y coordinates from parser
                 {
-                    Console.WriteLine("x=" + parser.xVoltage);
-                    Console.WriteLine("y=" + parser.yVoltage);
                     Packet galv = Packet.MoveGalvos(parser.xVoltage, parser.yVoltage);
                     CommunicationsProtocol.SendPacket(simCtl, galv);
                 }
-                else if (parser.moveBuildPlate) // checks if GCODE command was to move zrail
+                if (parser.moveBuildPlate) // checks if GCODE command was to move zrail
                 {
-                    Console.WriteLine("build plate: " + parser.moveBuildPlate);
-                    Console.WriteLine("z=" + parser.zRailMovement);
                     Packet Z = Packet.MoveZ(parser.prevZRail, parser.zRailMovement);
                     CommunicationsProtocol.SendPacket(simCtl, Z);
                 }
             }
-
-            //Loop(simCtl);
-
             swTimer.Stop();
             long elapsedMS = swTimer.ElapsedMilliseconds;
 
@@ -65,7 +57,6 @@ namespace PrinterSimulator
             Console.ReadKey();
         }
 
-      
         [STAThread]
 
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -106,7 +97,6 @@ namespace PrinterSimulator
                 Console.WriteLine("P - Print");
                 Console.WriteLine("T - Test");
                 Console.WriteLine("Q - Quit");
-                
 
                 char ch = Char.ToUpper(Console.ReadKey().KeyChar);
                 switch (ch)

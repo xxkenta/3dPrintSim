@@ -41,30 +41,49 @@ namespace Firmware
 
                 if (header.Any(b => b != 0))
                 {
+                    //Console.WriteLine("\nFirmware sending to host: ");
+                    //for (int i = 0; i < header.Length; i++)
+                    //{
+                    //    Console.Write(" ");
+                    //    Console.Write(header[i]);
+                    //}
                     printer.WriteSerialToHost(header, 4);
-                    Console.WriteLine("Firmware sending to host: " + Encoding.UTF8.GetString(header));
-                }
 
-                byte[] ack = ReadPacket(printer, 1);
-                if(ack[0] == 0xA5)
-                {
-                    byte[] data = ReadPacket(printer, length);
-                    if(data.Length == 0)
+                    byte[] ack = ReadPacket(printer, 1);
+                    if (ack[0] == 0xA5)
                     {
-                        response = Encoding.ASCII.GetBytes("Timeout");
+                        byte[] data = ReadPacket(printer, length);
+                        if (data.Length == 0)
+                        {
+                            response = Encoding.ASCII.GetBytes("Timeout");
+                        }
+                        else
+                        {
+                            ushort checksum = FindChecksum(header[0], data, data.Length);
+                            //Console.WriteLine("Host Checksum: " + header[2] + header[3] + "\n");
+
+                            //Console.WriteLine("Firmware checksum: " + BitConverter.GetBytes(checksum)[0] + BitConverter.GetBytes(checksum)[1]);
+
+                            if ((header[2] == BitConverter.GetBytes(checksum)[0]) && (header[3] == BitConverter.GetBytes(checksum)[1]))
+                            {
+                                response = ProcessCmd(header[0], data);
+                            }
+                            else
+                            {
+                                response = Encoding.ASCII.GetBytes("CHECKSUM");
+                            }
+                        }
+                        //Console.WriteLine("\nFirmware sending response to host: ");
+                        byte[] nullByte = { (byte)0 };
+                        response = response.Concat(nullByte).ToArray();
+
+                        //for (int i = 0; i < response.Length; i++)
+                        //{
+                        //    Console.Write(" ");
+                        //    Console.Write(response[i]);
+                        //}
+                        printer.WriteSerialToHost(response, response.Length);
                     }
-                    else
-                    {
-                        response = ProcessCmd(header[0], data);
-                    }
-                    //printer.WriteSerialToHost(response, response.Length);
-                    for (int i = 0; i < response.Length; i++)
-                    {
-                        byte[] character = { response[i] };
-                        printer.WriteSerialToHost(character, 1);
-                    }
-                    byte[] nullByte = { (byte)0 };
-                    printer.WriteSerialToHost(nullByte, 1);
                 }
 
             }
@@ -92,22 +111,43 @@ namespace Firmware
         {
             byte[] data = new byte[expected];
             byte[] failure = new byte[4];
-            int response = 0;
             int count = 0;
-            while (count < 10000)
+            while (count < 10000000)
             {
-                response = printer.ReadSerialFromHost(data, expected);
-                //Console.WriteLine("Firmware reading from host: " + data);
+                int response = printer.ReadSerialFromHost(data, expected);
+                if (response == expected)
+                {
+                    //Console.WriteLine("\nFirmware is reading: ");
+                    //for (int i = 0; i < data.Length; i++)
+                    //{
+                    //    Console.Write(" ");
+                    //    Console.Write(data[i]);
+                    //}
+                    return data;
+                }
                 count++;
             }
-            if(response == expected)
+            return failure;
+        }
+
+        public ushort FindChecksum(byte cmd, byte[] data, int length)
+        {
+            ushort checksum = 0;
+            //Console.WriteLine("\nFirmware Checksum Calculation: ");
+            //Console.WriteLine("CMD: " + cmd);
+            //Console.WriteLine("Data: ");
+
+            foreach (byte element in data)
             {
-                return data;
+                //Console.Write(" ");
+                //Console.Write(element);
+                checksum += element;
             }
-            else
-            {
-                return failure;
-            }
+
+            //Console.WriteLine("\nLength: " + length);
+            checksum += cmd;
+            checksum += (byte)length;
+            return checksum;
         }
 
         public byte[] ProcessCmd(byte cmd, byte[] data)
@@ -122,7 +162,7 @@ namespace Firmware
             }
             else if(cmd == (byte) Packet.Cmds.ZCOR) // Find more efficient method
             { 
-                Console.WriteLine(BitConverter.ToDouble(data,0));
+                //Console.WriteLine(BitConverter.ToDouble(data,0));
                 int steps = (int)(400 * BitConverter.ToDouble(data, 0));
                 if (((float) data[0]) < 0)
                 {
