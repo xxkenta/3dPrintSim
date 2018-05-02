@@ -50,6 +50,7 @@ namespace PrinterSimulator
                 //Console.WriteLine("\nResponse: " + response);
                 if (response == "SUCCESS")
                 {
+                    Console.WriteLine("success");
                     return;
                 }
                 else if (response.Contains("VERSION"))
