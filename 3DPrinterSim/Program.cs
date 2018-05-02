@@ -143,11 +143,14 @@ namespace PrinterSimulator
                                 switch(x)
                                 {
                                     case '1': // Test Laser On
-                                        firmware.TurnLaserOn();
+                                        Packet laserOn = Packet.LaserOn(true);
+                                        CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), laserOn);
+                                
                                         break;
                                     
                                     case '0': // Test Laser Off
-                                        firmware.TurnLaserOff();
+                                        Packet laserOff = Packet.LaserOn(false);
+                                        CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), laserOff);
                                         break;
                                 }
                                 break;
