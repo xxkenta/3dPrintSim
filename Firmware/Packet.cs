@@ -77,7 +77,7 @@ namespace Firmware
             return new Packet((byte)Cmds.ZCOR, zcor);
         }
 
-        public Packet Reset()
+        public static Packet Reset()
         {
             byte[] top = { (byte)0 };
             return new Packet((byte)Cmds.RESET, top);

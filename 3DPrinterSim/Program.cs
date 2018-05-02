@@ -103,7 +103,9 @@ namespace PrinterSimulator
                 {
 
                     case 'P': // Print
-                        firmware.SetBuildPlateHome();
+                        Packet setPlateHome = Packet.Reset();
+                        CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), setPlateHome);
+                        //firmware.SetBuildPlateHome();
                         PrintFile(printer.GetPrinterSim());
                         break;
 
