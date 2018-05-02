@@ -50,7 +50,7 @@ namespace PrinterSimulator
                 //Console.WriteLine("\nResponse: " + response);
                 if (response == "SUCCESS")
                 {
-                    Console.WriteLine("success");
+                    Console.WriteLine("Success");
                     return;
                 }
                 else if (response.Contains("VERSION"))
@@ -59,11 +59,13 @@ namespace PrinterSimulator
                 }
                 else
                 {
+                    Console.WriteLine("Failure");
                     SendPacket(printer, packet);
                 }
             }
             else
             {
+                Console.WriteLine("2 failure");
                 printer.WriteSerialToFirmware(new byte[] { 0xFF }, 1);
                 SendPacket(printer, packet);
             }
@@ -75,7 +77,7 @@ namespace PrinterSimulator
             byte[] data = new byte[expected];
             byte[] failure = new byte[4];
             int count = 0;
-            while (count < 10000000)
+            while (count < 1000000000)
             {
                 int response = printer.ReadSerialFromFirmware(data, expected);
                 if (response == expected)

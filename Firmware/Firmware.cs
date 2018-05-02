@@ -176,7 +176,7 @@ namespace Firmware
             else if(cmd == (byte) Packet.Cmds.RESET)
             {
                 SetBuildPlateHome();
-                return Encoding.ASCII.GetBytes("SUCCESS");
+                Console.WriteLine("return from setbuildplatehome");
             }
             return Encoding.ASCII.GetBytes("SUCCESS");
         }

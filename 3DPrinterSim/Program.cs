@@ -105,7 +105,6 @@ namespace PrinterSimulator
                     case 'P': // Print
                         Packet setPlateHome = Packet.Reset();
                         CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), setPlateHome);
-                        //firmware.SetBuildPlateHome();
                         PrintFile(printer.GetPrinterSim());
                         break;
 
@@ -123,7 +122,8 @@ namespace PrinterSimulator
                         switch (ch)
                         {
                             case 'B': // Test build plate movement from top to bottom
-                                firmware.SetBuildPlateHome();
+                                Packet reset = Packet.Reset();
+                                CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), reset);
                                 break;
 
                             case 'G': // Test galvo; should this take coordinates or voltages?
@@ -165,7 +165,8 @@ namespace PrinterSimulator
                                 Console.WriteLine("What position on the Z-rail would you like to move the build plate? (0-100): ");
                                 int pos = Convert.ToInt32(Console.ReadLine());
                                 int steps = 400*pos;
-                                firmware.SetBuildPlateHome();
+                                Packet testZrail = Packet.Reset();
+                                CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), testZrail);
                                 firmware.StepStepperUp(steps);
                                 break;
 
