@@ -176,6 +176,7 @@ namespace Firmware
             else if(cmd == (byte) Packet.Cmds.RESET)
             {
                 SetBuildPlateHome();
+                Console.WriteLine("return from setbuildplatehome");
             }
             return Encoding.ASCII.GetBytes("SUCCESS");
         }
@@ -184,7 +185,6 @@ namespace Firmware
         //the limit switch is pressed. It then steps down 40000 (calculated from datasheet) which will put it at the home position.
         public void SetBuildPlateHome()
         {
-
             while (printer.LimitSwitchPressed() != true)
             {
                 zRailController.StepOnce(PrinterControl.StepperDir.STEP_UP);
@@ -195,6 +195,7 @@ namespace Firmware
             Console.WriteLine("Build plate is at top and will now move to bottom");
 
             zRailController.MoveZRail(PrinterControl.StepperDir.STEP_DOWN, 40000);
+            return;
         }
 
         public void StepStepperUp(int steps)
