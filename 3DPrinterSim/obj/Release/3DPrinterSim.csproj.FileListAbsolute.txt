@@ -1,0 +1,12 @@
+C:\repo\3dPrintSim\3DPrinterSim\bin\Release\3DPrinterSim.exe.config
+C:\repo\3dPrintSim\3DPrinterSim\bin\Release\3DPrinterSim.exe
+C:\repo\3dPrintSim\3DPrinterSim\bin\Release\3DPrinterSim.pdb
+C:\repo\3dPrintSim\3DPrinterSim\bin\Release\Firmware.dll
+C:\repo\3dPrintSim\3DPrinterSim\bin\Release\Hardware.dll
+C:\repo\3dPrintSim\3DPrinterSim\bin\Release\OpenTK.dll
+C:\repo\3dPrintSim\3DPrinterSim\bin\Release\Firmware.pdb
+C:\repo\3dPrintSim\3DPrinterSim\bin\Release\OpenTK.xml
+C:\repo\3dPrintSim\3DPrinterSim\obj\Release\3DPrinterSim.csprojResolveAssemblyReference.cache
+C:\repo\3dPrintSim\3DPrinterSim\obj\Release\3DPrinterSim.csproj.CoreCompileInputs.cache
+C:\repo\3dPrintSim\3DPrinterSim\obj\Release\3DPrinterSim.exe
+C:\repo\3dPrintSim\3DPrinterSim\obj\Release\3DPrinterSim.pdb

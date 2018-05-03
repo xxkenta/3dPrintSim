@@ -63,3 +63,10 @@ C:\Users\pjneg\Desktop\CPTR 309\Final Day\3dPrintSim\Firmware\obj\Debug\Firmware
 C:\Users\pjneg\Desktop\CPTR 309\Final Day\3dPrintSim\Firmware\obj\Debug\Firmware.csproj.CopyComplete
 C:\Users\pjneg\Desktop\CPTR 309\Final Day\3dPrintSim\Firmware\obj\Debug\Firmware.dll
 C:\Users\pjneg\Desktop\CPTR 309\Final Day\3dPrintSim\Firmware\obj\Debug\Firmware.pdb
+C:\repo\3dPrintSim\Firmware\bin\Debug\Firmware.dll
+C:\repo\3dPrintSim\Firmware\bin\Debug\Firmware.pdb
+C:\repo\3dPrintSim\Firmware\bin\Debug\Hardware.dll
+C:\repo\3dPrintSim\Firmware\obj\Debug\Firmware.csprojResolveAssemblyReference.cache
+C:\repo\3dPrintSim\Firmware\obj\Debug\Firmware.csproj.CoreCompileInputs.cache
+C:\repo\3dPrintSim\Firmware\obj\Debug\Firmware.dll
+C:\repo\3dPrintSim\Firmware\obj\Debug\Firmware.pdb

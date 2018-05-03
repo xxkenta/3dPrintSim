@@ -1,0 +1,6 @@
+C:\repo\3dPrintSim\Firmware\bin\Release\Firmware.dll
+C:\repo\3dPrintSim\Firmware\bin\Release\Firmware.pdb
+C:\repo\3dPrintSim\Firmware\bin\Release\Hardware.dll
+C:\repo\3dPrintSim\Firmware\obj\Release\Firmware.csproj.CoreCompileInputs.cache
+C:\repo\3dPrintSim\Firmware\obj\Release\Firmware.dll
+C:\repo\3dPrintSim\Firmware\obj\Release\Firmware.pdb

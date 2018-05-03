@@ -119,3 +119,15 @@ C:\Users\pjneg\Desktop\CPTR 309\Final Day\3dPrintSim\3DPrinterSim\obj\Debug\3DPr
 C:\Users\pjneg\Desktop\CPTR 309\Final Day\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.csproj.CopyComplete
 C:\Users\pjneg\Desktop\CPTR 309\Final Day\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.exe
 C:\Users\pjneg\Desktop\CPTR 309\Final Day\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.pdb
+C:\repo\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.csprojResolveAssemblyReference.cache
+C:\repo\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.csproj.CoreCompileInputs.cache
+C:\repo\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.exe
+C:\repo\3dPrintSim\3DPrinterSim\obj\Debug\3DPrinterSim.pdb
+C:\repo\3dPrintSim\3DPrinterSim\bin\Debug\3DPrinterSim.exe.config
+C:\repo\3dPrintSim\3DPrinterSim\bin\Debug\3DPrinterSim.exe
+C:\repo\3dPrintSim\3DPrinterSim\bin\Debug\3DPrinterSim.pdb
+C:\repo\3dPrintSim\3DPrinterSim\bin\Debug\Firmware.dll
+C:\repo\3dPrintSim\3DPrinterSim\bin\Debug\Hardware.dll
+C:\repo\3dPrintSim\3DPrinterSim\bin\Debug\OpenTK.dll
+C:\repo\3dPrintSim\3DPrinterSim\bin\Debug\Firmware.pdb
+C:\repo\3dPrintSim\3DPrinterSim\bin\Debug\OpenTK.xml

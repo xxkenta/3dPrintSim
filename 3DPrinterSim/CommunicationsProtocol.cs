@@ -50,7 +50,6 @@ namespace PrinterSimulator
                 //Console.WriteLine("\nResponse: " + response);
                 if (response == "SUCCESS")
                 {
-                    Console.WriteLine("Success");
                     return;
                 }
                 else if (response.Contains("VERSION"))
@@ -59,13 +58,11 @@ namespace PrinterSimulator
                 }
                 else
                 {
-                    Console.WriteLine("Failure");
                     SendPacket(printer, packet);
                 }
             }
             else
             {
-                Console.WriteLine("2 failure");
                 printer.WriteSerialToFirmware(new byte[] { 0xFF }, 1);
                 SendPacket(printer, packet);
             }

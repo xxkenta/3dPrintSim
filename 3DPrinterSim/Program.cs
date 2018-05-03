@@ -114,7 +114,6 @@ namespace PrinterSimulator
                         Console.WriteLine("B - Test build plate movement from top to bottom");
                         Console.WriteLine("G - Test galvo");
                         Console.WriteLine("L - Test laser on/off");
-                        Console.WriteLine("T - Test host to firmware connection");
                         Console.WriteLine("Z - Test build plate movement to specific point");
                         Console.WriteLine("Q - Back");
 
@@ -127,39 +126,41 @@ namespace PrinterSimulator
                                 break;
 
                             case 'G': // Test galvo
-                                Console.WriteLine("Input x voltage");
-                                double xVoltage = Console.Read();
-                                
-                                Console.WriteLine("Input y voltage");
-                                double yVoltage = Console.Read();
-                                
+                                Console.WriteLine("Insert the X and Y coordinate separated by a space: ");
+
+                                string[] tokens = Console.ReadLine().Split();
+
+                                //Parse element 0
+                                double xVoltage = double.Parse(tokens[0]);
+
+                                //Parse element 1
+                                double yVoltage = double.Parse(tokens[1]);
+
                                 Packet galv = Packet.MoveGalvos(xVoltage, yVoltage);
                                 CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), galv);
-                                
+                                Packet galv2 = Packet.MoveGalvos(xVoltage + 10, yVoltage+10);
+                                CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), galv2);
+
                                 break;
 
                             case 'L': // Test laser on/off
                                 Console.WriteLine("1 - On");
                                 Console.WriteLine("0 - Off");
 
-                                int x = Console.Read();
+                                string x = Console.ReadLine();
                                 switch(x)
                                 {
-                                    case '1': // Test Laser On
+                                    case "1": // Test Laser On
                                         Packet laserOn = Packet.LaserOn(true);
                                         CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), laserOn);
                                 
                                         break;
                                     
-                                    case '0': // Test Laser Off
+                                    case "0": // Test Laser Off
                                         Packet laserOff = Packet.LaserOn(false);
                                         CommunicationsProtocol.SendPacket(printer.GetPrinterSim(), laserOff);
                                         break;
                                 }
-                                break;
-
-                            case 'T': // Test host to firmware connection
-                                //add functionalty
                                 break;
 
                             case 'Z': // Test build plate movement to specific point
